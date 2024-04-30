@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/home.css">
     <title>VUV- Vida útil Do Veículo</title>
-    <link rel="shortcut icon" href="img/logo_vuv_azul.png" type="image/x-icon">
+    <link rel="shortcut icon" href="img/home/logo_vuv_azul.png" type="image/x-icon">
 </head>
 <body>
 
 <header class="topo-site">
-                <img class="vuv" src="img/logo_vuv_azul.png" alt="">
+                <img class="vuv" src="img/home/logo_vuv_azul.png" alt="">
                 <a class="logo" href="index.html"> VUV</a>
 
                 <nav class="menu-site">
@@ -56,7 +56,7 @@
         <div class="swiper home-slider">
             <div class="swiper-wrapper">
 
-                <div class="swiper-slide slide" style="background:url(img/banner1.png) no-repeat;">
+                <div class="swiper-slide slide" style="background:url(img/home/banner1.png) no-repeat;">
                     <div class="content">
                      <h3>O <span>melhor</span> pregão de peças <br> da região</h3>
                     <a href="{{ route('register') }}" class="btn">cadastre-se</a>
@@ -66,7 +66,7 @@
               
 
                 
-                <div class="swiper-slide slide" style="background:url(img/banner2.png) no-repeat;">
+                <div class="swiper-slide slide" style="background:url(img/home/banner2.png) no-repeat;">
                     <div class="content">
                      <h3>O <span>melhor</span> pregão de peças <br> da região</h3>
                     <a href="{{ route('register') }}" class="btn">cadastre-se</a>
@@ -75,7 +75,7 @@
               
                     
                     
-                    <div class="swiper-slide slide" style="background:url(img/banner3.png) no-repeat;">
+                    <div class="swiper-slide slide" style="background:url(img/home/banner3.png) no-repeat;">
                         <div class="content">
                          <h3>O <span> melhor</span> pregão de peças <br> da região</h3>
                         <a href="{{ route('register') }}" class="btn">cadastre-se</a>
@@ -98,22 +98,22 @@
 
             
         <div class="box">
-            <img src="img/registro-home.png" alt="">
+            <img src="img/home/registro-home.png" alt="">
             <h3>Cadastre-se</h3>
         </div>
 
         <div class="box">
-            <img src="img/troca-home.png" alt="">
+            <img src="img/home/troca-home.png" alt="">
             <h3>Seja vendedor ou cliente</h3>
         </div>
 
         <div class="box">
-            <img src="img/mãos-home.png" alt="">
+            <img src="img/home/mãos-home.png" alt="">
             <h3>Participe de pregões</h3>
         </div>
 
         <div class="box">
-            <img src="img/entrega-home.png" alt="">
+            <img src="img/home/entrega-home.png" alt="">
             <h3>Receba sua peça</h3>
         </div>
 
@@ -127,7 +127,7 @@
         <div class="row">
 
             <div class="empresa-img">
-                <img src="img/foto-home.png" alt="">
+                <img src="img/home/foto-home.png" alt="">
             </div>
             <div class="content">
                 <h3> Vida <span>útil</span> do Veículo</h3>
@@ -152,7 +152,7 @@
         <div class="box-container">
 
             <div class="box">
-                <img src="img/pensando.png" alt="">
+                <img src="img/home/pensando.png" alt="">
                 <div class="icons">
                     <a href="">
                     <i class=""></i> Vida útil do Veículo
@@ -168,7 +168,7 @@
             </div>
 
             <div class="box">
-                <img src="img/confiavel.avif" alt="">
+                <img src="img/home/confiavel.avif" alt="">
                 <div class="icons">
                     <a href="">
                     <i class=""></i> Vida útil do Veículo
@@ -184,7 +184,7 @@
             </div>
 
             <div class="box">
-                <img src="img/ajuda.jpg" alt="">
+                <img src="img/home/ajuda.jpg" alt="">
                 <div class="icons">
                     <a href="">
                     <i class=""></i> Vida útil do Veículo
