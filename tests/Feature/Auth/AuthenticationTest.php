@@ -30,6 +30,34 @@ class AuthenticationTest extends TestCase
         $response->assertRedirect(route('dashboard', absolute: false));
     }
 
+    public function test_sellers_are_redirected_to_seller_dashboard() : void
+    {
+        $user = User::factory()->seller()->create();
+
+        $response = $this->post('/login', [
+            'email' => $user->email,
+            'password' => 'password',
+        ]);
+
+        $this->assertAuthenticated();
+        
+        $response->assertRedirect(route('seller.dashboard', absolute: false));
+    }
+
+    public function test_admins_are_redirected_to_admin_dashboard() : void
+    {
+        $user = User::factory()->admin()->create();
+
+        $response = $this->post('/login', [
+            'email' => $user->email,
+            'password' => env('ADMIN_PASSWORD'),
+        ]);
+
+        $this->assertAuthenticated();
+        
+        $response->assertRedirect(route('admin.dashboard', absolute: false));
+    }
+
     public function test_users_can_not_authenticate_with_invalid_password(): void
     {
         $user = User::factory()->create();

@@ -2,33 +2,23 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Http\Controllers\Controller;
 use App\Rules\LegalIdRule;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Validation\Rules;
 
-class RegisteredUserController extends Controller
+class SellerRegistrationController extends Controller
 {
-    /**
-     * Display the registration view.
-     */
-    public function create(): View
+    public function create() : View
     {
-        return view('auth.register');
+        return view('auth.seller.register');
     }
 
-    /**
-     * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request) : RedirectResponse
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -38,18 +28,17 @@ class RegisteredUserController extends Controller
             'phone_number' => ['required','unique:users,phone_number','regex:#\([1-9]{2}\) (?:[2-8]|9[0-9])[0-9]{3}\-[0-9]{4}#']
         ]);
 
-        
-        $user = User::create([
+        $seller = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => $request->password,
             'legal_id' => $request->legal_id,
             'phone_number' => $request->phone_number,
+            'role' => 'seller'
         ]);
 
-        event(new Registered($user));
+        Auth::login($seller);
 
-        Auth::login($user);
-        return redirect(route('dashboard', absolute: false));
+        return redirect(route('seller.dashboard', absolute:false));
     }
 }
