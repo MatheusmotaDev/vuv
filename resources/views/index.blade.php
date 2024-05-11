@@ -34,7 +34,7 @@
                     <a href="{{ route('login') }}">Login</a>
 
                     @if (Route::has('register'))
-                    <a href="{{ route('register') }}">Cadastro</a>
+                    <a href="{{ route('options') }}">Cadastro</a>
                     @endif
                     @endauth
                 </nav>
@@ -59,7 +59,7 @@
                 <div class="swiper-slide slide" style="background:url(img/home/banner1.png) no-repeat;">
                     <div class="content">
                      <h3>O <span>melhor</span> pregão de peças <br> da região</h3>
-                    <a href="{{ route('register') }}" class="btn">cadastre-se</a>
+                    <a href="{{ route('options') }}" class="btn">cadastre-se</a>
                     </div>
                     </div>
               
@@ -69,7 +69,7 @@
                 <div class="swiper-slide slide" style="background:url(img/home/banner2.png) no-repeat;">
                     <div class="content">
                      <h3>O <span>melhor</span> pregão de peças <br> da região</h3>
-                    <a href="{{ route('register') }}" class="btn">cadastre-se</a>
+                    <a href="{{ route('options') }}" class="btn">cadastre-se</a>
                     </div>
                     </div>
               
@@ -78,7 +78,7 @@
                     <div class="swiper-slide slide" style="background:url(img/home/banner3.png) no-repeat;">
                         <div class="content">
                          <h3>O <span> melhor</span> pregão de peças <br> da região</h3>
-                        <a href="{{ route('register') }}" class="btn">cadastre-se</a>
+                        <a href="{{ route('options') }}" class="btn">cadastre-se</a>
                         </div>
                         </div>
                   

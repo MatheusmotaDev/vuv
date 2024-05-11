@@ -35,7 +35,7 @@
                         @enderror
                     </div>
 
-                    <!-- Password -->
+                    
                     <div class="mt-4">
                         <label for="password" class="form-label">{{ __('Senha') }}</label>
                         <input id="password" class="form-control" type="password" name="password" required autocomplete="current-password" />
@@ -44,7 +44,7 @@
                         @enderror
                     </div>
 
-                    <!-- Remember Me -->
+                    
                     <div class="form-check mt-4">
                         <input class="form-check-input" type="checkbox" id="remember_me" name="remember">
                         <label class="form-check-label" for="remember_me">
@@ -52,21 +52,21 @@
                         </label>
                     </div>
 
-                    <div class="d-flex justify-content-end mt-4">
+                    <div class="d-flex justify-content-between align-items-center mt-4">
+                        <p class="mb-0"><a href="{{ route('options') }}" class="text-white">Não é cadastrado?</a></p>
                         @if (Route::has('password.request'))
-                            <a href="{{ route('password.request') }}" class="text-decoration-none me-3">{{ __('Forgot Your Password?') }}</a>
+                            <a href="{{ route('password.request') }}" class="text-decoration-none text-white">{{ __('Esqueceu sua senha?') }}</a>
                         @endif
-
-                        <button type="submit" class="btn btn-dark">{{ __('Login') }}</button>
-
                     </div>
+
+                    <button type="submit" class="btn btn-dark btn-lg mt-3">{{ __('Login') }}</button>
                 </form>
             </div>
         </div>
     </div>
 </section>
 
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
-

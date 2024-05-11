@@ -13,6 +13,13 @@ use App\Http\Controllers\Auth\SellerRegistrationController;
 use Illuminate\Support\Facades\Route;
 
 //User auth
+
+
+Route::get('options', function () {
+    return view('auth.options');
+})->name('options');
+
+
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
                 ->name('register');
