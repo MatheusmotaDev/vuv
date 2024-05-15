@@ -16,9 +16,9 @@
                 <a class="logo" href="index.html"> VUV</a>
 
                 <nav class="menu-site">
-                    <a href="index.html">Inicio</a>
-                    <a href="index.html">Serviços</a>
-                    <a href="index.html">Sobre Nós</a>
+                    <a href="#">Inicio</a>
+                    <a href="{{ route('services') }}">Serviços</a>
+                    <a href="{{ route('about') }}">Sobre Nós</a>
                 </nav>
 
                 <div class="icons">
@@ -58,7 +58,7 @@
 
                 <div class="swiper-slide slide" style="background:url(img/home/banner1.png) no-repeat;">
                     <div class="content">
-                     <h3>O <span>melhor</span> pregão de peças <br> da região</h3>
+                     <h3>A <span>melhor</span> cotações de peças <br> da região</h3>
                     <a href="{{ route('options') }}" class="btn">cadastre-se</a>
                     </div>
                     </div>
@@ -68,7 +68,7 @@
                 
                 <div class="swiper-slide slide" style="background:url(img/home/banner2.png) no-repeat;">
                     <div class="content">
-                     <h3>O <span>melhor</span> pregão de peças <br> da região</h3>
+                    <h3>A <span>melhor</span> cotações de peças <br> da região</h3>
                     <a href="{{ route('options') }}" class="btn">cadastre-se</a>
                     </div>
                     </div>
@@ -77,7 +77,7 @@
                     
                     <div class="swiper-slide slide" style="background:url(img/home/banner3.png) no-repeat;">
                         <div class="content">
-                         <h3>O <span> melhor</span> pregão de peças <br> da região</h3>
+                        <h3>A <span>melhor</span> cotações de peças <br> da região</h3>
                         <a href="{{ route('options') }}" class="btn">cadastre-se</a>
                         </div>
                         </div>
@@ -109,7 +109,7 @@
 
         <div class="box">
             <img src="img/home/mãos-home.png" alt="">
-            <h3>Participe de pregões</h3>
+            <h3>Faça cotações</h3>
         </div>
 
         <div class="box">
@@ -164,7 +164,7 @@
                 </div>
                 <h3> Por que a VUV?</h3>
                 <p>Descubra uma nova maneira de encontrar peças automotivas. Simplifique sua busca e conecte-se a uma ampla rede de vendedores confiáveis. Experimente a conveniência da VUV hoje mesmo.</p>
-                <a href="" class="btn">Saiba mais</a>
+                <a href="{{ route('services') }}" class="btn">Saiba mais</a>
             </div>
 
             <div class="box">
@@ -180,7 +180,7 @@
                 </div>
                 <h3>A VUV É Confiável?</h3>
                 <p>Absolutamente! Na VUV, garantimos a confiabilidade em cada etapa. Com vendedores verificados e um sistema de segurança sólido, você pode confiar em nós para suas necessidades automotivas. Confie na VUV para uma experiência de compra tranquila e segura.</p>
-                <a href="" class="btn">Saiba mais</a>
+                <a href="{{ route('services') }}" class="btn">Saiba mais</a>
             </div>
 
             <div class="box">
@@ -197,7 +197,7 @@
                 <h3> VUV serve para uma emergência? </h3>
                 <p>
                 Sim! Na VUV, estamos aqui para ajudar, mesmo nas situações mais urgentes. Com acesso a uma ampla variedade de peças e vendedores confiáveis, você pode contar conosco para encontrar a solução certa, rapidamente. Confie na VUV para estar lá quando você mais precisa.</p>
-                <a href="" class="btn">Saiba mais</a>
+                <a href="{{ route('services') }}" class="btn">Saiba mais</a>
             </div>
 
         </div>
