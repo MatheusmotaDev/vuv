@@ -17,7 +17,7 @@ Route::get('/services', function () {
 
 
 Route::get('/dashboard', function () { 
-     return view('dashboard');
+     return view('customer.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/vendedor/dashboard', function () {
