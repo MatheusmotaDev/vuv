@@ -60,9 +60,11 @@
         </div>
         <div class="card-body">
           <p class="card-text" style="text-align: center;">ABAIXO VOCÊ PODE LISTAR TODOS OS USUÁRIOS DA PLATAFORMA<p>
+          
           <div class="text-center">
-            <a href="#" class="btn btn-primary">VERIFICAR</a>
+            <a href="{{ route('admin.users.index') }}" class="btn btn-primary">VERIFICAR</a>
           </div>
+
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminUserController;
 
 Route::get('/', function () {
     return view('index');
@@ -15,18 +16,22 @@ Route::get('/services', function () {
     return view('services');
 })->name('services');
 
-
-Route::get('/dashboard', function () { 
-     return view('customer.dashboard');
+Route::get('/dashboard', function () {
+    return view('customer.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/vendedor/dashboard', function () {
     return view('seller.dashboard');
 })->middleware(['auth', 'role:seller', 'verified'])->name('seller.dashboard');
 
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth', 'role:admin', 'verified'])->name('admin.dashboard');
+Route::middleware(['auth', 'role:admin', 'verified'])->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+
+    Route::get('/admin/users', [AdminUserController::class, 'index'])->name('admin.users.index');
+    Route::delete('/admin/users/{user}', [AdminUserController::class, 'destroy'])->name('admin.users.destroy');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
