@@ -20,6 +20,17 @@ Route::get('/dashboard', function () {
     return view('customer.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/customer/new-quotation', function () {
+    return view('customer.new-quotation');
+})->middleware(['auth', 'verified'])->name('customer.new-quotation');
+
+Route::get('/customer/edit', function () {
+    return view('customer.edit');
+})->name('customer.edit');
+
+
+
+
 Route::get('/vendedor/dashboard', function () {
     return view('seller.dashboard');
 })->middleware(['auth', 'role:seller', 'verified'])->name('seller.dashboard');

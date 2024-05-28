@@ -60,7 +60,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
         <a class="navbar-brand" href="{{ route('dashboard') }}">
-            <img src="img/dashboard/logo_vuv_azul.png" class="vuv" alt="">
+            <img src="/img/dashboard/logo_vuv_azul.png" class="vuv" alt="">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -167,7 +167,7 @@
           Cotação criada com sucesso!
         </div>
         <div class="modal-footer">
-          <a href="#" class="btn btn-primary">Voltar para Dashboard</a>
+          <a href="{{ route('dashboard') }}" class="btn btn-primary">Voltar para Dashboard</a>
         </div>
       </div>
     </div>
