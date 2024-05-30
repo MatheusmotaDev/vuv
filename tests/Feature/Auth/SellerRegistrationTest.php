@@ -3,7 +3,6 @@
 namespace Tests\Feature\Auth;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class SellerRegistrationTest extends TestCase
@@ -20,7 +19,7 @@ class SellerRegistrationTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_new_sellers_can_register() : void 
+    public function test_new_sellers_can_register(): void
     {
         $response = $this->post(route('seller.register'), [
             'name' => 'test',
@@ -42,7 +41,7 @@ class SellerRegistrationTest extends TestCase
 
         $this->assertAuthenticated();
 
-        $response->assertRedirect(route('seller.dashboard', absolute:false));
+        $response->assertRedirect(route('seller.dashboard', absolute: false));
 
     }
 }

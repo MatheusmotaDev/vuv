@@ -4,14 +4,14 @@
 function verifyCpf($cpf)
 {
     // Extrai somente os números
-    $cpf = preg_replace( '/[^0-9]/is', '', $cpf );
-     
+    $cpf = preg_replace('/[^0-9]/is', '', $cpf);
+
     // Verifica se foi informado todos os digitos corretamente
     if (strlen($cpf) != 11) {
         return false;
     }
 
-     // Verifica se foi informada uma sequência de digitos repetidos. Ex: 111.111.111-11
+    // Verifica se foi informada uma sequência de digitos repetidos. Ex: 111.111.111-11
     if (preg_match('/(\d)\1{10}/', $cpf)) {
         return false;
     }
@@ -24,8 +24,9 @@ function verifyCpf($cpf)
         $d = ((10 * $d) % 11) % 10;
         if ($cpf[$c] != $d) {
             return false;
-        }   
+        }
     }
+
     return true;
 }
 
@@ -56,5 +57,6 @@ function verifyCnpj(string $document): bool
             return false;
         }
     }
+
     return true;
 }

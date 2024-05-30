@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -48,17 +49,27 @@ class User extends Authenticatable
         ];
     }
 
-    public function getRole() : string
+    public function quotations(): HasMany
+    {
+        return $this->hasMany(Quotation::class, 'costumer_id');
+    }
+
+    public function budgets(): HasMany
+    {
+        return $this->hasMany(Budget::class, 'seller_id');
+    }
+
+    public function getRole(): string
     {
         return $this->role;
     }
 
-    public function isSeller() : bool
+    public function isSeller(): bool
     {
         return $this->role == 'seller';
     }
 
-    public function isAdmin() : bool
+    public function isAdmin(): bool
     {
         return $this->role == 'admin';
     }
