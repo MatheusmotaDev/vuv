@@ -1,0 +1,43 @@
+.vuv {
+    width: 60px;
+    height: 60px;
+  }
+  
+.form-section {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+.form-title {
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+.input-container {
+  margin-bottom: 15px;
+}
+.input-container label {
+  font-weight: bold;
+}
+.input-container input,
+.input-container select,
+.input-container textarea {
+  max-width: 100%;
+}
+.section-header {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #495057;
+}
+.btn-primary, .btn-success {
+  width: 100%;
+  max-width: 200px;
+}
+.btn-primary {
+  margin-top: 10px;
+}
+.table th, .table td {
+  vertical-align: middle;
+}
