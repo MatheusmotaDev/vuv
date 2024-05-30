@@ -31,7 +31,7 @@ class UserFactory extends Factory
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
             'phone_number' => '(81) 98888-9999',
-            'legal_id' => fake()->numberBetween(1,1000000),
+            'legal_id' => fake()->numberBetween(1, 1000000),
         ];
     }
 
@@ -45,7 +45,7 @@ class UserFactory extends Factory
         ]);
     }
 
-    public function admin() : static
+    public function admin(): static
     {
         return $this->state(fn (array $attributes) => [
             'name' => 'vuv-adm',
@@ -55,10 +55,10 @@ class UserFactory extends Factory
         ]);
     }
 
-    public function seller() : static
+    public function seller(): static
     {
         return $this->state((fn (array $attributes) => [
-            'role' => 'seller'
+            'role' => 'seller',
         ]));
     }
 }

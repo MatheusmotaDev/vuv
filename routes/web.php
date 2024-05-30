@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminUserController;
 
 Route::get('/', function () {
     return view('index');
@@ -27,9 +27,6 @@ Route::get('/customer/new-quotation', function () {
 Route::get('/customer/edit', function () {
     return view('customer.edit');
 })->name('customer.edit');
-
-
-
 
 Route::get('/vendedor/dashboard', function () {
     return view('seller.dashboard');
