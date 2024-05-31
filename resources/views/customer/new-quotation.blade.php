@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Criar cotação</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="/css/quotation.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -14,7 +14,7 @@
         <img src="/img/dashboard/logo_vuv_azul.png" class="vuv" alt="">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
@@ -37,7 +37,7 @@
   <div class="container">
     <h1 class="form-title text-center">Iniciar Cotação</h1>
     
-    <form id="quotationForm" method="POST" action="">
+    <form id="quotationForm" method="" action="">
       @csrf
       <div class="form-section">
         <div class="row">
@@ -53,10 +53,12 @@
       </div>
 
       <h2 class="section-header">Informe as peças desejadas</h2>
+      <!-- Adicionar um campo oculto para armazenar os itens da cotação -->
+      <input type="hidden" id="quotationItems" name="quotationItems">
       <div class="row">
-        <div class="col-md-4 input-container">
+        <div class="col-md-6 input-container">
           <label for="categorySelect" class="form-label">Categoria:</label>
-          <select class="form-select" id="categorySelect" name="categorySelect">
+          <select class="form-select" id="categorySelect">
             <option selected disabled>Selecione uma categoria</option>
             <option>Motor</option>
             <option>Suspensão</option>
@@ -68,26 +70,30 @@
             <option>Outros</option>
           </select>
         </div>
-        <div class="col-md-4 input-container">
+        <div class="col-md-6 input-container">
           <label for="partName" class="form-label">Peça:</label>
-          <input type="text" class="form-control" id="partName" name="partName" placeholder="Digite o nome da peça">
-        </div>
-        <div class="col-md-2 input-container">
-          <label for="brand" class="form-label">Marca:</label>
-          <input type="text" class="form-control" id="brand" name="brand" placeholder="Digite a marca da peça">
-        </div>
-        <div class="col-md-2 input-container">
-          <label for="description" class="form-label">Descrição:</label>
-          <input type="text" class="form-control" id="description" name="description" placeholder="Digite a descrição da peça">
+          <input type="text" class="form-control" id="partName" placeholder="Digite o nome da peça">
         </div>
       </div>
       <div class="row">
         <div class="col-md-6 input-container">
           <label for="quantity" class="form-label">Quantidade:</label>
-          <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Digite a quantidade">
+          <input type="number" class="form-control" id="quantity" placeholder="Digite a quantidade">
         </div>
-        <div class="col-md-6 input-container d-flex align-items-end">
-          <button type="submit" class="btn btn-primary">Adicionar Peça</button>
+        <div class="col-md-6 input-container">
+          <label for="brand" class="form-label">Marca:</label>
+          <input type="text" class="form-control" id="brand" placeholder="Digite a marca da peça">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 input-container">
+          <label for="description" class="form-label">Descrição:</label>
+          <textarea class="form-control" id="description" rows="2" placeholder="Digite uma descrição"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 input-container d-flex align-items-end">
+          <button type="button" class="btn btn-primary" id="addPartBtn">Adicionar Peça</button>
         </div>
       </div>
 
@@ -96,9 +102,9 @@
           <tr>
             <th scope="col">Categoria</th>
             <th scope="col">Peça</th>
+            <th scope="col">Quantidade</th>
             <th scope="col">Marca</th>
             <th scope="col">Descrição</th>
-            <th scope="col">Quantidade</th>
           </tr>
         </thead>
         <tbody id="quotationItemsBody">
@@ -126,57 +132,82 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          Cotação criada com
-          <div class="modal-body">
-            Cotação criada com sucesso!
-          </div>
-          <div class="modal-footer">
-            <a href="{{ route('dashboard') }}" class="btn btn-primary">Voltar para Dashboard</a>
-          </div>
+          Cotação criada com sucesso!
+        </div>
+        <div class="modal-footer">
+          <a href="{{ route('dashboard') }}" class="btn btn-primary">Voltar para Dashboard</a>
         </div>
       </div>
     </div>
-  
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-      document.getElementById("addPartBtn").addEventListener("click", function() {
-        const categorySelect = document.getElementById("categorySelect");
-        const partNameInput = document.getElementById("partName");
-        const brandInput = document.getElementById("brand"); // Adicionado campo da marca
-        const descriptionInput = document.getElementById("description"); // Adicionado campo de descrição
-        const quantityInput = document.getElementById("quantity");
-  
-        const category = categorySelect.value;
-        const partName = partNameInput.value;
-        const brand = brandInput.value; // Obtendo valor do campo de marca
-        const description = descriptionInput.value; // Obtendo valor do campo de descrição
-        const quantity = quantityInput.value;
-  
-        if (category === "Selecione uma categoria" || partName === "" || brand === "" || description === "" || quantity === "") {
-          alert("Por favor, preencha todos os campos antes de adicionar uma peça.");
-          return;
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById("addPartBtn").addEventListener("click", function() {
+      const categorySelect = document.getElementById("categorySelect");
+      const partNameInput = document.getElementById("partName");
+      const quantityInput = document.getElementById("quantity");
+      const brandInput = document.getElementById("brand");
+      const descriptionInput = document.getElementById("description");
+
+      const category = categorySelect.value;
+      const partName = partNameInput.value;
+      const quantity = quantityInput.value;
+      const brand = brandInput.value;
+      const description = descriptionInput.value;
+
+      if (category === "Selecione uma categoria" || partName === "" || quantity === "" || brand === "" || description === "") {
+        alert("Por favor, preencha todos os campos antes de adicionar uma peça.");
+        return;
+      }
+
+      const quotationItemsBody = document.getElementById("quotationItemsBody");
+
+      const newRow = document.createElement("tr");
+      newRow.innerHTML = `<td>${category}</td><td>${partName}</td><td>${quantity}</td><td>${brand}</td><td>${description}</td>`;
+      quotationItemsBody.appendChild(newRow);
+
+      // Add item to hidden input
+      const items = document.getElementById("quotationItems").value ? JSON.parse(document.getElementById("quotationItems").value) : [];
+      items.push({ category, partName, quantity, brand, description });
+      document.getElementById("quotationItems").value = JSON.stringify(items);
+
+      // Reset form fields
+      categorySelect.value = "Selecione uma categoria";
+      partNameInput.value = "";
+      quantityInput.value = "";
+      brandInput.value = "";
+      descriptionInput.value = "";
+    });
+
+    function handleFormSubmit(event) {
+        event.preventDefault(); // Evita o envio do formulário
+
+        const form = event.target;
+        const formData = new FormData(form);
+
+        // Exibir os dados no console
+        console.log('Form Data:');
+        for (let [key, value] of formData.entries()) {
+            console.log(`${key}: ${value}`);
         }
-  
-        const quotationItemsBody = document.getElementById("quotationItemsBody");
-  
-        const newRow = document.createElement("tr");
-        newRow.innerHTML = `<td>${category}</td><td>${partName}</td><td>${brand}</td><td>${description}</td><td>${quantity}</td>`;
-        quotationItemsBody.appendChild(newRow);
-  
-        // Reset form fields
-        categorySelect.value = "Selecione uma categoria";
-        partNameInput.value = "";
-        brandInput.value = ""; // Resetando valor do campo de marca
-        descriptionInput.value = ""; // Resetando valor do campo de descrição
-        quantityInput.value = "";
-      });
-  
-      document.getElementById("createQuotationBtn").addEventListener("click", function() {
-        // Simulate form submission
-        const modal = new bootstrap.Modal(document.getElementById('confirmationModal'));
-        modal.show();
-      });
-    </script>
-  </body>
-  </html>
-  
+
+        // Pode enviar o formulário aqui, se necessário, por exemplo usando fetch
+        /*
+        fetch(form.action, {
+            method: form.method,
+            body: formData,
+        }).then(response => {
+            if (response.ok) {
+                console.log('Formulário enviado com sucesso!');
+            } else {
+                console.log('Erro ao enviar o formulário.');
+            }
+        }).catch(error => {
+            console.error('Erro ao enviar o formulário:', error);
+        });
+        */
+    }
+  </script>
+</body>
+</html>
