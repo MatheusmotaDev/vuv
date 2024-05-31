@@ -180,34 +180,8 @@
       descriptionInput.value = "";
     });
 
-    function handleFormSubmit(event) {
-        event.preventDefault(); // Evita o envio do formulário
-
-        const form = event.target;
-        const formData = new FormData(form);
-
-        // Exibir os dados no console
-        console.log('Form Data:');
-        for (let [key, value] of formData.entries()) {
-            console.log(`${key}: ${value}`);
-        }
-
-        // Pode enviar o formulário aqui, se necessário, por exemplo usando fetch
-        /*
-        fetch(form.action, {
-            method: form.method,
-            body: formData,
-        }).then(response => {
-            if (response.ok) {
-                console.log('Formulário enviado com sucesso!');
-            } else {
-                console.log('Erro ao enviar o formulário.');
-            }
-        }).catch(error => {
-            console.error('Erro ao enviar o formulário:', error);
-        });
-        */
-    }
+   
+    
   </script>
 </body>
 </html>
