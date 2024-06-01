@@ -37,7 +37,14 @@
           <label for="categorySelect" class="form-label">Categoria:</label>
           <select class="form-select" id="categorySelect">
             <option selected disabled>Selecione uma categoria</option>
-            <!-- Opções da categoria -->
+            <option>Motor</option>
+            <option>Suspensão</option>
+            <option>Freios</option>
+            <option>Eletrônicos</option>
+            <option>Transmissão</option>
+            <option>Interior e Estética</option>
+            <option>Refrigeração do Motor</option>
+            <option>Outros</option>
           </select>
         </div>
         <div class="col-md-6 input-container">
