@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminUserController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,9 +24,6 @@ Route::get('/customer/new-quotation', function () {
     return view('customer.new-quotation');
 })->middleware(['auth', 'verified'])->name('customer.new-quotation');
 
-Route::get('/customer/edit', function () {
-    return view('customer.edit');
-})->name('customer.edit');
 
 Route::get('/vendedor/dashboard', function () {
     return view('seller.dashboard');
@@ -42,9 +39,9 @@ Route::middleware(['auth', 'role:admin', 'verified'])->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile/edit', [UserController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [UserController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [UserController::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__.'/auth.php';

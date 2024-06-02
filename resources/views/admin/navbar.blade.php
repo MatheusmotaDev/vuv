@@ -10,16 +10,19 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('dashboard') }}">{{ __('PAINEL ADMINISTRATIVO') }}</a>
+                    <a class="nav-link" href="{{ route('admin.dashboard') }}">{{ __('PAINEL ADMINISTRATIVO') }}</a>
                 </li>
             </ul>
-            <div class="d-flex align-items-center">
-                <div class="me-3 text-white">{{ Auth::user()->name }}</div>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="btn btn-outline-dark">{{ __('Sair') }}</button>
-                </form>
+            <div class="me-3 text-white" style="display: flex; align-items: center;">
+                <i class="fas fa-user" style="margin-right: 5px;"></i>
+                <div style="border: 2px solid transparent; border-radius: 4px;">
+                    {{ Auth::user()->name }}
+                </div>
             </div>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="btn btn-outline-dark">{{ __('Sair') }}</button>
+            </form>
         </div>
     </div>
 </nav>
