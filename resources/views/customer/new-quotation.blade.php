@@ -37,7 +37,7 @@
   <div class="container">
     <h1 class="form-title text-center">Iniciar Cotação</h1>
     
-    <form id="quotationForm" method="" action="">
+    <form id="quotationForm" method="POST">
       @csrf
       <div class="form-section">
         <div class="row">
@@ -72,7 +72,7 @@
         </div>
         <div class="col-md-6 input-container">
           <label for="partName" class="form-label">Peça:</label>
-          <input type="text" class="form-control" id="partName" placeholder="Digite o nome da peça">
+          <input type="text" class="form-control" id="partName" name="name" placeholder="Digite o nome da peça">
         </div>
       </div>
       <div class="row">
@@ -151,7 +151,7 @@
       const descriptionInput = document.getElementById("description");
 
       const category = categorySelect.value;
-      const partName = partNameInput.value;
+      const name = partNameInput.value;
       const quantity = quantityInput.value;
       const brand = brandInput.value;
       const description = descriptionInput.value;
@@ -164,12 +164,12 @@
       const quotationItemsBody = document.getElementById("quotationItemsBody");
 
       const newRow = document.createElement("tr");
-      newRow.innerHTML = `<td>${category}</td><td>${partName}</td><td>${quantity}</td><td>${brand}</td><td>${description}</td>`;
+      newRow.innerHTML = `<td>${category}</td><td>${name}</td><td>${quantity}</td><td>${brand}</td><td>${description}</td>`;
       quotationItemsBody.appendChild(newRow);
 
       // Add item to hidden input
       const items = document.getElementById("quotationItems").value ? JSON.parse(document.getElementById("quotationItems").value) : [];
-      items.push({ category, partName, quantity, brand, description });
+      items.push({ category, name, quantity, brand, description });
       document.getElementById("quotationItems").value = JSON.stringify(items);
 
       // Reset form fields

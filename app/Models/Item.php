@@ -11,6 +11,14 @@ class Item extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'category',
+        'brand',
+        'description',
+        'quantity',
+    ];
+
     public function quotation(): BelongsTo
     {
         return $this->belongsTo(Quotation::class);
