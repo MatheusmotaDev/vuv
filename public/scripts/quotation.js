@@ -1,7 +1,7 @@
 document.getElementById('addPartBtn').addEventListener('click', function () {
   // Coleta os dados do item
   const category = document.getElementById('categorySelect').value;
-  const partName = document.getElementById('partName').value;
+  const name = document.getElementById('partName').value;
   const quantity = document.getElementById('quantity').value;
   const brand = document.getElementById('brand').value;
   const description = document.getElementById('description').value;
@@ -19,7 +19,7 @@ document.getElementById('addPartBtn').addEventListener('click', function () {
 
       // Atualiza o campo hidden com os dados dos itens
       const items = JSON.parse(document.getElementById('quotationItems').value || '[]');
-      items.push({ category, partName, quantity, brand, description });
+      items.push({ category, name, quantity, brand, description });
       document.getElementById('quotationItems').value = JSON.stringify(items);
 
       // Limpa os campos do item
