@@ -1,18 +1,18 @@
 document.getElementById('addPartBtn').addEventListener('click', function () {
   // Coleta os dados do item
   const category = document.getElementById('categorySelect').value;
-  const name = document.getElementById('partName').value;
+  const name = document.getElementById('name').value;
   const quantity = document.getElementById('quantity').value;
   const brand = document.getElementById('brand').value;
   const description = document.getElementById('description').value;
 
   // Valida os dados
-  if (category && partName && quantity && brand && description) {
+  if (category && name && quantity && brand && description) {
       // Adiciona o item à tabela
       const tableBody = document.getElementById('quotationItemsBody');
       const row = tableBody.insertRow();
       row.insertCell(0).innerText = category;
-      row.insertCell(1).innerText = partName;
+      row.insertCell(1).innerText = name;
       row.insertCell(2).innerText = quantity;
       row.insertCell(3).innerText = brand;
       row.insertCell(4).innerText = description;
@@ -24,7 +24,7 @@ document.getElementById('addPartBtn').addEventListener('click', function () {
 
       // Limpa os campos do item
       document.getElementById('categorySelect').selectedIndex = 0;
-      document.getElementById('partName').value = '';
+      document.getElementById('name').value = '';
       document.getElementById('quantity').value = '';
       document.getElementById('brand').value = '';
       document.getElementById('description').value = '';

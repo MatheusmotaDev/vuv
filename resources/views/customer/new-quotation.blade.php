@@ -16,6 +16,9 @@
     
     <form id="quotationForm" method="POST">
       @csrf
+
+      <input type="hidden" id="quotationItems" name="quotationItems">
+
       <!-- Seção de informações da cotação -->
       <div class="form-section">
         <div class="row">
@@ -48,8 +51,8 @@
           </select>
         </div>
         <div class="col-md-6 input-container">
-          <label for="partName" class="form-label">Peça:</label>
-          <input type="text" class="form-control" id="partName" name="name" placeholder="Digite o nome da peça">
+          <label for="name" class="form-label">Peça:</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="Digite o nome da peça">
         </div>
       </div>
       <div class="row">
