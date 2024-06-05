@@ -11,6 +11,12 @@ class Quotation extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'shipping_address',
+        'notes',
+    ];
+
     public function budgets(): HasMany
     {
         return $this->hasMany(Budget::class);

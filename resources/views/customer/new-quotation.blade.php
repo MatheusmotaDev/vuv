@@ -14,7 +14,7 @@
   <div class="container">
     <h1 class="form-title text-center">Iniciar Cotação</h1>
     
-    <form id="quotationForm" method="" action="">
+    <form id="quotationForm" method="POST">
       @csrf
       <!-- Seção de informações da cotação -->
       <div class="form-section">
@@ -49,7 +49,7 @@
         </div>
         <div class="col-md-6 input-container">
           <label for="partName" class="form-label">Peça:</label>
-          <input type="text" class="form-control" id="partName" placeholder="Digite o nome da peça">
+          <input type="text" class="form-control" id="partName" name="name" placeholder="Digite o nome da peça">
         </div>
       </div>
       <div class="row">

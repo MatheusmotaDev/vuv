@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QuotationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,6 +26,11 @@ Route::get('/customer/new-quotation', function () {
     return view('customer.new-quotation');
 })->middleware(['auth', 'verified'])->name('customer.new-quotation');
 
+Route::post('/customer/new-quotation', [QuotationController::class, 'store'])->name('customer.quotation.store');
+
+Route::get('/customer/edit', function () {
+    return view('customer.edit');
+})->name('customer.edit');
 
 Route::get('/vendedor/dashboard', function () {
     return view('seller.dashboard');
