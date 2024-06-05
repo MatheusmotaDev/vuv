@@ -6,52 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bem vindo</title>
     <link href="/css/dashboard.css" rel="stylesheet">
-    <style>
-      .section-header {
-          margin-bottom: 1.5rem;
-      }
-
-      .form-section {
-          padding: 1.5rem;
-          background-color: #f8f9fa;
-          border-radius: 0.5rem;
-          margin-bottom: 2rem;
-      }
-
-      .modal-confirm {
-          text-align: center;
-      }
-  </style>
-    <!-- Bootstrap CSS -->
+    <link href="/css/edit.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container">
-        <a class="navbar-brand" href="{{ route('seller.dashboard') }}">
-            <img src="/img/dashboard/logo_vuv_azul.png" class="vuv" alt="">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('dashboard') }}">{{ __('ÁREA DO VENDEDOR') }}</a>
-                </li>
-            </ul>
-            <div class="d-flex align-items-center">
-                <div class="me-3 text-white">{{ Auth::user()->name }}</div>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="btn btn-outline-dark">{{ __('Sair') }}</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</nav>
+
+
+    @include('seller.navbar')
 
 <div class="container my-5">
   <!-- Profile Information Section -->

@@ -8,37 +8,15 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container">
-      <a class="navbar-brand" href="{{ route('dashboard') }}">
-        <img src="/img/dashboard/logo_vuv_azul.png" class="vuv" alt="">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('dashboard') }}">ÁREA DO CLIENTE</a>
-          </li>
-        </ul>
-        <div class="d-flex align-items-center">
-          <div class="me-3 text-white">{{ Auth::user()->name }}</div>
-          <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button type="submit" class="btn btn-outline-dark">{{ __('Sair') }}</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </nav>
+  
+  @include('customer.navbar')
 
   <div class="container">
     <h1 class="form-title text-center">Iniciar Cotação</h1>
     
     <form id="quotationForm" method="POST">
       @csrf
+      <!-- Seção de informações da cotação -->
       <div class="form-section">
         <div class="row">
           <div class="col-md-6 input-container">
@@ -51,10 +29,9 @@
           </div>
         </div>
       </div>
-
+    
+      <!-- Seção de adição de peças -->
       <h2 class="section-header">Informe as peças desejadas</h2>
-      <!-- Adicionar um campo oculto para armazenar os itens da cotação -->
-      <input type="hidden" id="quotationItems" name="quotationItems">
       <div class="row">
         <div class="col-md-6 input-container">
           <label for="categorySelect" class="form-label">Categoria:</label>
@@ -96,7 +73,8 @@
           <button type="button" class="btn btn-primary" id="addPartBtn">Adicionar Peça</button>
         </div>
       </div>
-
+    
+      <!-- Tabela de peças adicionadas -->
       <table class="table table-striped mt-4">
         <thead>
           <tr>
@@ -111,18 +89,19 @@
           <!-- Itens da cotação serão inseridos aqui -->
         </tbody>
       </table>
-
+    
+      <!-- Observações gerais -->
       <div class="input-container">
         <label for="generalNotes" class="form-label">Observações Gerais:</label>
         <textarea class="form-control" id="generalNotes" name="generalNotes" rows="3" placeholder="Digite suas observações"></textarea>
       </div>
-
+    
+      <!-- Botão de envio -->
       <div class="d-flex justify-content-center">
         <button type="submit" class="btn btn-success" id="createQuotationBtn">Criar Cotação</button>
       </div>
     </form>
-  </div>
-
+    
   <!-- Modal de confirmação -->
   <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -142,5 +121,6 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/scripts/quotation.js"></script>
 </body>
 </html>

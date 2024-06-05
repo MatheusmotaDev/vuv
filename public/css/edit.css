@@ -1,0 +1,14 @@
+.section-header {
+    margin-bottom: 1.5rem;
+}
+
+.form-section {
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.modal-confirm {
+    text-align: center;
+}
