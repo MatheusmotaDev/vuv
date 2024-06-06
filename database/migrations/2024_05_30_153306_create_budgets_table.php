@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('budgets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('seller_id')->constrained(table: 'users');
-            $table->foreignId('quotation_id')->constrained();
+            $table->foreignId('seller_id')->constrained(table: 'users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('quotation_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('name');
             $table->string('status')->default('pending');
             $table->timestamps();
