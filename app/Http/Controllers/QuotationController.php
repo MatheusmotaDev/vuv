@@ -43,4 +43,33 @@ class QuotationController extends Controller
 
         return redirect()->back()->with('status', 'Cotação criada com sucesso');
     }
+
+
+    //visualizando cotações especificas
+    {
+        $quotations = auth()->user()->quotations;
+        return view('customer.quotations', ['quotations' => $quotations]);
+    }
+
+    //itens da cotação especifica
+    public function showItems(Quotation $quotation): View
+    {
+        return view('customer.items', ['quotation' => $quotation]);
+    }
+
+      //lista cotações (admin)
+    public function adminIndex()
+    {
+        $quotations = Quotation::all();
+        return view('admin.quotations', ['quotations' => $quotations]);
+
+    }
+
+      //apaga cotações ( admin - não funcionando )
+    public function destroy(Quotation $quotation)
+    {
+        $quotation->delete();
+        return redirect()->route('admin.quotations.index')->with('success', 'Cotação excluída com sucesso.');
+    }
+
 }

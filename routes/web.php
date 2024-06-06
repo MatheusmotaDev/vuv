@@ -18,6 +18,9 @@ Route::get('/services', function () {
     return view('services');
 })->name('services');
 
+
+Route::get('/saudacao', [UserController::class, 'saudacaoUsuario'])->name('saudacao');
+
 Route::get('/dashboard', function () {
     return view('customer.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -32,6 +35,11 @@ Route::get('/customer/edit', function () {
     return view('customer.edit');
 })->name('customer.edit');
 
+Route::get('/customer/quotations', [QuotationController::class, 'index'])->name('customer.quotations');
+
+Route::get('/customer/quotations/{quotation}/items', [QuotationController::class, 'showItems'])->name('customer.quotations.items');
+
+
 Route::get('/vendedor/dashboard', function () {
     return view('seller.dashboard');
 })->middleware(['auth', 'role:seller', 'verified'])->name('seller.dashboard');
@@ -43,7 +51,11 @@ Route::middleware(['auth', 'role:admin', 'verified'])->group(function () {
 
     Route::get('/admin/users', [AdminUserController::class, 'index'])->name('admin.users.index');
     Route::delete('/admin/users/{user}', [AdminUserController::class, 'destroy'])->name('admin.users.destroy');
+    Route::get('/admin/quotations', [QuotationController::class, 'adminIndex'])->name('admin.quotations.index');
+    Route::delete('/admin/quotations/{quotation}', [QuotationController::class, 'destroy'])->name('admin.quotations.destroy');
 });
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile/edit', [UserController::class, 'edit'])->name('profile.edit');

@@ -17,9 +17,10 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <h1 id="saudacao" class="text-center"></h1>
+                <h1 class="text-center">{{ app('App\Http\Controllers\UserController')->saudacaoUsuario() }}</h1>
             </div>
         </div>
+    </div>
 
         <br>
         <br>
@@ -46,7 +47,7 @@
                     <div class="card-body">
                         <p class="card-text" style="text-align: center;">Clique abaixo para acompanhar os status das suas cotações</p>
                         <div class="text-center">
-                            <a href="#" class="btn btn-primary">VER</a>
+                            <a href="{{ route('customer.quotations') }}" class="btn btn-primary">VER</a>
                         </div>
                     </div>
                 </div>
@@ -56,35 +57,7 @@
 
 
     
-    <script>
-        // Calcula a saudação com base na hora atual
-        function calcularSaudacao() {
-            var horaAtual = new Date().getHours();
-            var saudacao = "";
-
-            if (horaAtual >= 6 && horaAtual < 12) {
-                saudacao = "Bom dia";
-            } else if (horaAtual >= 12 && horaAtual < 18) {
-                saudacao = "Boa tarde";
-            } else {
-                saudacao = "Boa noite";
-            }
-
-            return saudacao;
-        }
-
-        // Exibe a saudação na página
-        function exibirSaudacao() {
-            var saudacao = calcularSaudacao();
-            var nomeUsuario = "{{ ucfirst(strtolower(Auth::user()->name)) }}";
-            var saudacaoCompleta = saudacao + ", " + nomeUsuario + "";
-
-            document.getElementById("saudacao").innerText = saudacaoCompleta;
-        }
-
-        // Chama a função para exibir a saudação quando a página carregar
-        window.onload = exibirSaudacao;
-    </script>
+    
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-gh7hCB2wY9h/LS1wa7Gb72A5iUEuNbU10a8MFu42O1oe9iEfeKXe7MW/axXJC7bX"

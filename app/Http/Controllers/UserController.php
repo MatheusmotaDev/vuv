@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Rules\MatchOldPassword;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -43,4 +44,24 @@ class UserController extends Controller
 
         return redirect('/')->with('success', 'Conta excluída com sucesso.');
     }
+
+        //saudacao usuario
+    public function saudacaoUsuario() {
+        $horaAtualBrasil = Carbon::now('America/Sao_Paulo')->hour;
+        $saudacao = "";
+
+        if ($horaAtualBrasil >= 6 && $horaAtualBrasil < 12) {
+            $saudacao = "Bom dia";
+        } elseif ($horaAtualBrasil >= 12 && $horaAtualBrasil < 18) {
+            $saudacao = "Boa tarde";
+        } else {
+            $saudacao = "Boa noite";
+        }
+
+        $nomeUsuario = Auth::user()->name;
+
+        return "$saudacao, $nomeUsuario";
+    }
+
+
 }

@@ -15,12 +15,13 @@
 
   @include('seller.navbar')
 
-<div class="container mt-5">
-  <div class="row justify-content-center"> 
-    <div class="col-md-6">
-      <h1 id="saudacao" class="text-center"></h1>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1 class="text-center">{{ app('App\Http\Controllers\UserController')->saudacaoUsuario() }}</h1>
+        </div>
     </div>
-  </div>
+</div>
 
   <br>
   <br>
@@ -32,7 +33,7 @@
           VER COTAÇÕES DISPONÍVEIS
         </div>
         <div class="card-body">
-          <p class="card-text" style="text-align: center;">Se você deseja procurar uma cotação em aberto para fazer propostas, por favor clique abaixo</p>
+          <p class="card-text" style="text-align: center;">Se você deseja procurar uma cotação em aberto para fazer uma proposta de orçamento, por favor clique abaixo</p>
           <div class="text-center">
             <a href="#" class="btn btn-primary">CRIAR</a>
           </div>
@@ -42,10 +43,10 @@
     <div class="col-md-4 mb-4">
       <div class="card" style="max-width: 300px; margin: 0 auto;">
         <div class="card-header bg-secondary text-white text-center">
-          ACOMPANHAR PROPOSTAS
+          ACOMPANHAR ORÇAMENTOS
         </div>
         <div class="card-body">
-          <p class="card-text" style="text-align: center;">Clique abaixo para ver as propostas feitas por você e os andamentos dela</p>
+          <p class="card-text" style="text-align: center;">Clique abaixo para ver as propostas de orçamento feitas por você e os andamentos dela</p>
           <div class="text-center">
             <a href="#" class="btn btn-primary">VER</a>
           </div>
@@ -57,36 +58,6 @@
 
 
 
-
-<script>
-    // Calcula a saudação com base na hora atual
-    function calcularSaudacao() {
-        var horaAtual = new Date().getHours();
-        var saudacao = "";
-
-        if (horaAtual >= 6 && horaAtual < 12) {
-            saudacao = "Bom dia";
-        } else if (horaAtual >= 12 && horaAtual < 18) {
-            saudacao = "Boa tarde";
-        } else {
-            saudacao = "Boa noite";
-        }
-
-        return saudacao;
-    }
-
-    // Exibe a saudação na página
-    function exibirSaudacao() {
-        var saudacao = calcularSaudacao();
-        var nomeUsuario = "{{ ucfirst(strtolower(Auth::user()->name)) }}";
-        var saudacaoCompleta = saudacao + ", " + nomeUsuario;
-
-        document.getElementById("saudacao").innerText = saudacaoCompleta;
-    }
-
-    // Chama a função para exibir a saudação quando a página carregar
-    window.onload = exibirSaudacao;
-</script>
 
 
 

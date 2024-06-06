@@ -25,7 +25,7 @@
             <tr>
                 <th>Nome</th>
                 <th>Email</th>
-                <th>Role</th>
+                <th>Usuário</th>
                 <th>Ações</th>
             </tr>
         </thead>

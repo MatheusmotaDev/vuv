@@ -25,7 +25,7 @@
         <div class="card-body">
           <p class="card-text" style="text-align: center;">O QUE DESEJA FAZER?</p>
           <div class="text-center">
-            <a href="#" class="btn btn-primary">LISTAR TODAS AS COTAÇÕES</a>
+            <a href="{{ route('admin.quotations.index') }}" class="btn btn-primary">LISTAR TODAS AS COTAÇÕES</a>
           </div>
         </div>
       </div>
