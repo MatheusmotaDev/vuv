@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('costumer_id')->constrained(table: 'users');
             $table->string('name');
-            $table->string('status')->default('pending');
+            $table->string('status')->default('open');
             $table->string('shipping_address');
             $table->text('notes')->nullable();
             $table->timestamps();

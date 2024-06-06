@@ -46,6 +46,7 @@ class QuotationController extends Controller
 
 
     //visualizando cotações especificas
+    public function index(): View
     {
         $quotations = auth()->user()->quotations;
         return view('customer.quotations', ['quotations' => $quotations]);

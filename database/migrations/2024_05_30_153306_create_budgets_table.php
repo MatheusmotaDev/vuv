@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('seller_id')->constrained(table: 'users');
             $table->foreignId('quotation_id')->constrained();
             $table->string('name');
-            $table->string('status');
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }
