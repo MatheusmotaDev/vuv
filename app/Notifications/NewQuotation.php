@@ -37,9 +37,9 @@ class NewQuotation extends Notification
     {
         return [
             'quotation_id' => $this->quotation->id,
-            'shipping_address' => $this->quotation->shippingAddress,
+            'shipping_address' => $this->quotation->shipping_address,
             'quotation_name' => $this->quotation->name,
-            'customer_name' => $this->quotation->costumer(),
+            'customer' => $this->quotation->costumer,
         ];
     }
 }
