@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('quotations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('costumer_id')->constrained(table: 'users');
+            $table->foreignId('costumer_id')->constrained(table: 'users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('name');
             $table->string('status')->default('open');
             $table->string('shipping_address');
