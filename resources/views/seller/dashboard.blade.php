@@ -32,7 +32,7 @@
                 <div class="card-body">
                     <p class="card-text" style="text-align: center;">Se você deseja procurar uma cotação em aberto para fazer uma proposta de orçamento, por favor clique abaixo</p>
                     <div class="text-center">
-                        <a href="#" class="btn btn-primary">CRIAR</a>
+                        <a href="{{ route('seller.newBudget') }}" class="btn btn-primary">CRIAR</a>
                     </div>
                 </div>
             </div>

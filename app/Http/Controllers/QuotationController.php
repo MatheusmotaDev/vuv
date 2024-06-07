@@ -66,7 +66,7 @@ class QuotationController extends Controller
 
     }
 
-      //apaga cotações ( admin - não funcionando )
+      //apaga cotações ( admin )
     public function destroy(Quotation $quotation)
     {
         $quotation->delete();

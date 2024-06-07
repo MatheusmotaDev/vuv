@@ -44,6 +44,16 @@ Route::get('/vendedor/dashboard', function () {
     return view('seller.dashboard');
 })->middleware(['auth', 'role:seller', 'verified'])->name('seller.dashboard');
 
+// Rota para listar cotações disponíveis para o vendedor
+Route::get('/vendedor/cotacoes-disponiveis', function () {
+    return view('seller.new-budget');
+})->middleware(['auth', 'role:seller', 'verified'])->name('seller.newBudget');
+
+// Rota para exibir a view de criar orçamento
+Route::get('/vendedor/cotacoes-disponiveis/{quotation}/criar-orcamento', function ($quotation) {
+    return view('seller.create-budget', compact('quotation'));
+})->middleware(['auth', 'role:seller', 'verified'])->name('quotations.createBudget');
+
 Route::middleware(['auth', 'role:admin', 'verified'])->group(function () {
     Route::get('/admin/dashboard', function () {
         return view('admin.dashboard');
