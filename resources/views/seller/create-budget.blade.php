@@ -12,7 +12,8 @@
     @include('seller.navbar')
 
     <div class="container mt-4">
-        <h2>Proposta de Orçamento para cotação de {{ $quotation->customer_name }}</h2>
+        <h2>Proposta de Orçamento para cotação de {{ $quotation->costumer->name }}</h2>
+
         <p><strong>Endereço:</strong> {{ $quotation->shipping_address }}</p>
         <p><strong>Observações Gerais da Cotação:</strong> {{ $quotation->notes }}</p>
 
@@ -20,41 +21,61 @@
 
         <h3>Valores por Peças:</h3>
 
-        @php
-            $totalPrice = 0;
-        @endphp
-
-        @foreach($quotation->items as $item)
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Peça: {{ $item->name }}</h5>
-                    <p>Categoria: {{ $item->category }}</p>
-                    <p>Descrição do Item: {{ $item->description }}</p>
-                    <p>Quantidade: {{ $item->quantity }}</p>
-                    <div class="mb-3">
-                        <label for="price-{{ $item->id }}" class="form-label">Preço:</label>
-                        <div class="input-group">
-                            <span class="input-group-text">R$</span>
-                            <input type="number" step="0.01" class="form-control price" id="price-{{ $item->id }}" name="prices[{{ $item->id }}]" placeholder="Preço" required>
-                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Confirmar Preço</button>
+        <form id="budgetForm" method="POST">
+            @csrf
+            @method('POST')
+            
+            @foreach($quotation->items as $item)
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Peça: {{ $item->name }}</h5>
+                        <p>Categoria: {{ $item->category }}</p>
+                        <p>Descrição do Item: {{ $item->description }}</p>
+                        <p>Quantidade: {{ $item->quantity }}</p>
+                        <div class="mb-3">
+                            <label for="price-{{ $item->id }}">Preço:</label>
+                            <div class="input-group">
+                                <span class="input-group-text">R$</span>
+                                <input type="number" step="0.01" class="form-control price" id="price-{{ $item->id }}" name="prices[{{ $item->id }}]" data-quantity="{{ $item->quantity }}" placeholder="Preço" required>
+                                <button class="btn btn-outline-secondary confirm-price" type="button" data-item-id="{{ $item->id }}" data-item-price="{{ $item->price }}" id="button-addon2">Confirmar Preço</button>
+                            </div>
                         </div>
                     </div>
-                    @php
-                        $totalPrice += $item->quantity * 0; // Inicializa o preço total deste item como 0
-                    @endphp
                 </div>
+            @endforeach
+            
+            <div class="mb-3">
+                <label for="total-price-display" class="form-label">Valor Total do Orçamento:</label>
+                <input type="hidden" id="total-price" name="total-price" value="0.00">
+                <input type="text" class="form-control" id="total-price-display" value="R$ 0.00" disabled>
             </div>
-        @endforeach
-
-        <div class="mb-3">
-            <label for="total-price" class="form-label">Valor Total do Orçamento:</label>
-            <input type="text" class="form-control" id="total-price" value="R$ {{ number_format($totalPrice, 2) }}" disabled>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Enviar Orçamento</button>
+            
+            <button type="submit" class="btn btn-primary">Enviar Orçamento</button>
+            <button type="button" class="btn btn-secondary" id="resetBudget">Zerar Orçamento</button>
+        </form>
+        
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-gh7hCB2wY9h/LS1wa7Gb72A5iUEuNbU10a8MFu42O1oe9iEfeKXe7MW/axXJC7bX" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-Ys2SmgVBf8fW3fXK0z+WaCzynJ2rtrB+1sbY/ZvRUeR2zNQLeSpibibhav75vNgf" crossorigin="anonymous"></script>
+    <!-- Modal -->
+    <div class="modal fade" id="priceModal" tabindex="-1" aria-labelledby="priceModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="priceModalLabel">Preço Confirmado</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    O valor foi salvo.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="/scripts/new-budget.js"></script>
 </body>
 </html>
