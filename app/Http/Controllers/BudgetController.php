@@ -2,25 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use App\Models\Budget;
+use App\Models\Quotation;
 
 class BudgetController extends Controller
 {
-    public function store(Request $request, ) : RedirectResponse
+    public function store(Request $request, Quotation $quotation)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            ''
+        // Validar os dados
+        $validatedData = $request->validate([
+            'prices' => 'required|array',
+            'total-price' => 'required|numeric',
         ]);
 
-        $request->user()->load('budgets');
-        $budget = $request->user()->budgets()->create([
-            'name' => $request->name
-        ]);
+        // Criar o orçamento
+        $budget = new Budget();
+        $budget->seller_id = auth()->id();  // Assumindo que o vendedor está logado
+        $budget->quotation_id = $quotation->id;
+        $budget->status = 'pending';
+        $budget->total_price = $validatedData['total-price'];
+        $budget->save();
 
-        $budget->items()->attach();
+        // Adicionar os itens ao orçamento
+        foreach ($validatedData['prices'] as $itemId => $price) {
+            $budget->items()->attach($itemId, ['price' => $price]);
+        }
 
-        return redirect('/');
+        // Redirecionar ou retornar resposta
+        return redirect()->back()->with('success', 'Orçamento criado com sucesso.');
     }
 }

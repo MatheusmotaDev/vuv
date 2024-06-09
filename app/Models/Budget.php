@@ -11,6 +11,8 @@ class Budget extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['seller_id', 'quotation_id', 'total_price', 'status'];
+
     public function quotation(): BelongsTo
     {
         return $this->belongsTo(Quotation::class);
@@ -18,6 +20,6 @@ class Budget extends Model
 
     public function items(): BelongsToMany
     {
-        return $this->belongsToMany(Item::class);
+        return $this->belongsToMany(Item::class, 'budget_item')->withPivot('price');
     }
 }

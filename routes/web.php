@@ -4,6 +4,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuotationController;
+use App\Http\Controllers\BudgetController;
+
 use App\Models\Quotation;
 use Illuminate\Support\Facades\Route;
 
@@ -55,6 +57,9 @@ Route::get('/vendedor/cotacoes-disponiveis', function () {
 Route::get('/vendedor/cotacoes-disponiveis/{quotation}/criar-orcamento', function (Quotation $quotation) {
     return view('seller.create-budget', compact('quotation'));
 })->middleware(['auth', 'role:seller', 'verified'])->name('quotations.createBudget');
+
+Route::post('/vendedor/cotacoes-disponiveis/{quotation}/store-budget', [BudgetController::class, 'store'])->name('quotations.storeBudget');
+
 
 Route::middleware(['auth', 'role:admin', 'verified'])->group(function () {
     Route::get('/admin/dashboard', function () {

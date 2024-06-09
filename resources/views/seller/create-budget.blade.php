@@ -14,6 +14,12 @@
     <div class="container mt-4">
         <h2>Proposta de Orçamento para cotação de {{ $quotation->costumer->name }}</h2>
 
+        @if (session('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <p><strong>Endereço:</strong> {{ $quotation->shipping_address }}</p>
         <p><strong>Observações Gerais da Cotação:</strong> {{ $quotation->notes }}</p>
 
@@ -21,7 +27,7 @@
 
         <h3>Valores por Peças:</h3>
 
-        <form id="budgetForm" method="POST">
+        <form id="budgetForm" method="POST" action="{{ route('quotations.storeBudget', ['quotation' => $quotation]) }}">
             @csrf
             @method('POST')
             
@@ -53,6 +59,7 @@
             <button type="submit" class="btn btn-primary">Enviar Orçamento</button>
             <button type="button" class="btn btn-secondary" id="resetBudget">Zerar Orçamento</button>
         </form>
+        
         
     </div>
 
