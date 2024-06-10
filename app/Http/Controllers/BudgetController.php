@@ -80,4 +80,10 @@ class BudgetController extends Controller
     // Retornar a view com os orçamentos
     return view('seller.budgets', compact('budgets'));
 }
+
+public function track(Budget $budget)
+    {
+        return view('seller.track-budget', compact('budget'));
+    }
+
 }

@@ -16,8 +16,8 @@
         <div class="card mb-3">
             <div class="card-body">
                 <h5 class="card-title">Vendedor: {{ $budget->seller->name }}</h5>
-                <p class="card-text">CPF/CNPJ: {{ $budget->seller->legal_id }}</p> <!-- Correção aqui -->
-                <p class="card-text">Telefone: {{ $budget->seller->phone_number }}</p> <!-- Correção aqui -->
+                <p class="card-text">CPF/CNPJ: {{ $budget->seller->legal_id }}</p> 
+                <p class="card-text">Telefone: {{ $budget->seller->phone_number }}</p> 
 
                 <h6>Itens da Cotação:</h6>
                 <ul>

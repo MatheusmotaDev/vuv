@@ -39,7 +39,7 @@
                         <td>{{ $budget->status }}</td>
                         <td>R$ {{ number_format($budget->total_price, 2, ',', '.') }}</td>
                         <td>
-                            <a href="" class="btn btn-primary">Acompanhar</a>
+                            <a href="{{ route('budgets.track', $budget->id) }}" class="btn btn-primary">Acompanhar</a>
                         </td>
                     </tr>
                 @endforeach
