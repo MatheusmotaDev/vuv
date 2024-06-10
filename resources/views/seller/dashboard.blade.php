@@ -43,10 +43,12 @@
                     ACOMPANHAR ORÇAMENTOS
                 </div>
                 <div class="card-body">
-                    <p class="card-text" style="text-align: center;">Clique abaixo para ver as propostas de orçamento feitas por você e os andamentos dela</p>
+                    <p class="card-text" style="text-align: center;">Clique abaixo para ver as propostas de orçamento feitas por você e os andamentos delas</p>
                     <div class="text-center">
-                        <a href="#" class="btn btn-primary">VER</a>
+                        <a href="{{ route('seller.budgets') }}" class="btn btn-primary">VER</a>
                     </div>
+                </div>
+                
                 </div>
             </div>
         </div>

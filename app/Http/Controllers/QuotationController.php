@@ -73,4 +73,13 @@ class QuotationController extends Controller
         return redirect()->route('admin.quotations.index')->with('success', 'Cotação excluída com sucesso.');
     }
 
+    public function closeQuotation(Request $request, Quotation $quotation)
+{
+    
+    $quotation->status = 'closed';
+    $quotation->save();
+
+    return redirect()->route('customer.quotations')->with('success', 'Cotação encerrada com sucesso.');
+}
+
 }

@@ -1,5 +1,4 @@
 <?php
-
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\ProfileController;
@@ -21,7 +20,6 @@ Route::get('/services', function () {
     return view('services');
 })->name('services');
 
-
 Route::get('/saudacao', [UserController::class, 'saudacaoUsuario'])->name('saudacao');
 
 Route::get('/dashboard', function () {
@@ -42,24 +40,32 @@ Route::get('/customer/quotations', [QuotationController::class, 'index'])->name(
 
 Route::get('/customer/quotations/{quotation}/items', [QuotationController::class, 'showItems'])->name('customer.quotations.items');
 
+Route::get('/customer/quotations/{quotation}/budgets', [BudgetController::class, 'showBudgets'])->name('customer.quotations.budgets');
+Route::post('/customer/quotations/{quotation}/budgets/{budget}/accept', [BudgetController::class, 'acceptBudget'])->name('customer.budgets.accept');
+Route::post('/customer/quotations/{quotation}/budgets/{budget}/refuse', [BudgetController::class, 'refuseBudget'])->name('customer.budgets.refuse');
+Route::get('/customer/quotations/{quotation}/budgets/{budget}/accepted', [BudgetController::class, 'acceptedBudget'])->name('customer.budgets.accepted');
+Route::post('/customer/quotations/{quotation}/close', [QuotationController::class, 'closeQuotation'])->name('customer.quotation.close');
 
-Route::get('/vendedor/dashboard', function () {
-    return view('seller.dashboard');
-})->middleware(['auth', 'role:seller', 'verified'])->name('seller.dashboard');
+Route::middleware(['auth', 'role:seller', 'verified'])->group(function () {
+    Route::get('/vendedor/dashboard', function () {
+        return view('seller.dashboard');
+    })->name('seller.dashboard');
 
-// Rota para listar cotações disponíveis para o vendedor
-Route::get('/vendedor/cotacoes-disponiveis', function () {
-    $quotations = Quotation::where('status', 'open')->with('items')->get();
-    return view('seller.new-budget', ['quotations' => $quotations]);
-})->middleware(['auth', 'role:seller', 'verified'])->name('seller.newBudget');
+    Route::get('/vendedor/cotacoes-disponiveis', function () {
+        $quotations = Quotation::where('status', 'open')->with('items')->get();
+        return view('seller.new-budget', ['quotations' => $quotations]);
+    })->name('seller.newBudget');
 
-// Rota para exibir a view de criar orçamento
-Route::get('/vendedor/cotacoes-disponiveis/{quotation}/criar-orcamento', function (Quotation $quotation) {
-    return view('seller.create-budget', compact('quotation'));
-})->middleware(['auth', 'role:seller', 'verified'])->name('quotations.createBudget');
+    Route::get('/vendedor/cotacoes-disponiveis/{quotation}/criar-orcamento', function (Quotation $quotation) {
+        return view('seller.create-budget', compact('quotation'));
+    })->name('quotations.createBudget');
 
-Route::post('/vendedor/cotacoes-disponiveis/{quotation}/store-budget', [BudgetController::class, 'store'])->name('quotations.storeBudget');
+    Route::post('/vendedor/cotacoes-disponiveis/{quotation}/store-budget', [BudgetController::class, 'store'])->name('quotations.storeBudget');
 
+    Route::get('/vendedor/orcamentos', [BudgetController::class, 'index'])->name('seller.budgets');
+
+    Route::get('/vendedor/orcamentos/{budget}/acompanhar', [BudgetController::class, 'track'])->name('budgets.track');
+});
 
 Route::middleware(['auth', 'role:admin', 'verified'])->group(function () {
     Route::get('/admin/dashboard', function () {
@@ -71,8 +77,6 @@ Route::middleware(['auth', 'role:admin', 'verified'])->group(function () {
     Route::get('/admin/quotations', [QuotationController::class, 'adminIndex'])->name('admin.quotations.index');
     Route::delete('/admin/quotations/{quotation}', [QuotationController::class, 'destroy'])->name('admin.quotations.destroy');
 });
-
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile/edit', [UserController::class, 'edit'])->name('profile.edit');
