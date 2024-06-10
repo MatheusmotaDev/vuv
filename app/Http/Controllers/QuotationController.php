@@ -82,4 +82,9 @@ class QuotationController extends Controller
     return redirect()->route('customer.quotations')->with('success', 'Cotação encerrada com sucesso.');
 }
 
+public function print(Quotation $quotation)
+{
+    return view('customer.print_quotation', compact('quotation'));
+}
+
 }

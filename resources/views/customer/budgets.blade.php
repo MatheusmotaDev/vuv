@@ -37,7 +37,13 @@
                     </ul>
 
                     <div class="text-end mt-3">
-                        @if($quotation->status !== 'in_progress')
+                        @if($budget->status === 'refused')
+                            <span class="text-danger">Você recusou o orçamento</span>
+                        @elseif($budget->status === 'accepted')
+                            <a href="{{ route('customer.budgets.accepted', [$quotation->id, $budget->id]) }}" class="btn btn-secondary">Acompanhar</a>
+                        @elseif($quotation->budgets->where('status', 'accepted')->isNotEmpty())
+                            <span class="text-warning">Você não pode aceitar mais de um orçamento por cotação</span>
+                        @else
                             <form action="{{ route('customer.budgets.accept', [$quotation->id, $budget->id]) }}" method="POST" class="d-inline">
                                 @csrf
                                 <button type="submit" class="btn btn-success">Aceitar</button>
@@ -46,9 +52,6 @@
                                 @csrf
                                 <button type="submit" class="btn btn-danger">Recusar</button>
                             </form>
-                        @else
-                        <a href="{{ route('customer.budgets.accepted', [$quotation->id, $budget->id]) }}" class="btn btn-secondary">Acompanhar</a>
-
                         @endif
                     </div>
                 </div>
@@ -59,8 +62,10 @@
         @endforeach
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+    integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
 </body>
 
 </html>

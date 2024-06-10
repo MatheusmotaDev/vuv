@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Acompanhar Cotações</title>
   <link href="/css/quotation.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/status.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
- 
 </head>
 <body>
  
@@ -17,8 +17,8 @@
     <h1 class="form-title text-center">Acompanhar Cotações</h1>
     
     @foreach($quotations as $quotation)
-    <div class="card mt-4">
-      <div class="card-header">
+    <div class="card mt-4 quotation-card">
+      <div class="card-header quotation-header">
         Cotação #{{ $quotation->id }} - {{ $quotation->name }} <!-- Adicionando o título da cotação -->
       </div>
       <div class="card-body">
@@ -37,7 +37,6 @@
       </div>
     </div>
     @endforeach
-
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

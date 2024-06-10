@@ -39,7 +39,17 @@
                         <td>{{ $budget->status }}</td>
                         <td>R$ {{ number_format($budget->total_price, 2, ',', '.') }}</td>
                         <td>
-                            <a href="{{ route('budgets.track', $budget->id) }}" class="btn btn-primary">Acompanhar</a>
+                            @if($budget->status === 'accepted')
+                                <a href="{{ route('budgets.track', $budget->id) }}" class="btn btn-primary">Acompanhar</a>
+                            @elseif($budget->status === 'pending')
+                                <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
+                                    <div class="card-header">Aguardando resposta do cliente</div>
+                                </div>
+                            @elseif($budget->status === 'refused')
+                                <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+                                    <div class="card-header">Seu orçamento não foi aceito</div>
+                                </div>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
@@ -47,8 +57,10 @@
         </table>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-gh7hCB2wY9h/LS1wa7Gb72A5iUEuNbU10a8MFu42O1oe9iEfeKXe7MW/axXJC7bX" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-Ys2SmgVBf8fW3fXK0z+WaCzynJ2rtrB+1sbY/ZvRUeR2zNQLeSpibibhav75vNgf" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+    integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
 </body>
 
 </html>
