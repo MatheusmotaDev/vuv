@@ -27,18 +27,23 @@
                 </div>
 
                 @if (Route::has('login'))
-                <nav class="menu-site">
-                    @auth
-                    <a href="{{ url('/dashboard') }}">Dashboard</a>
-                    @else
-                    <a href="{{ route('login') }}">Login</a>
-
-                    @if (Route::has('register'))
-                    <a href="{{ route('options') }}">Cadastro</a>
-                    @endif
-                    @endauth
-                </nav>
-                @endif
+    <nav class="menu-site">
+        @auth
+            @if (auth()->user()->isAdmin())
+                <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+            @elseif (auth()->user()->isSeller())
+                <a href="{{ route('seller.dashboard') }}">Dashboard</a>
+            @else
+                <a href="{{ route('customer.dashboard') }}">Dashboard</a>
+            @endif
+        @else
+            <a href="{{ route('login') }}">Login</a>
+            @if (Route::has('register'))
+                <a href="{{ route('options') }}">Cadastro</a>
+            @endif
+        @endauth
+    </nav>
+    @endif
 
              
                 </header>

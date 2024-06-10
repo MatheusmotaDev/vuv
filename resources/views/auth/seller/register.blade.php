@@ -75,7 +75,7 @@
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
-                    <a class="underline text-sm hover:text-gray-900 text-white" href="{{ route('options') }}">
+                    <a class="underline text-sm hover:text-gray-900 text-white" href="{{ route('login') }}">
                      {{ __('Já é registrado?') }}
                      </a>
 
