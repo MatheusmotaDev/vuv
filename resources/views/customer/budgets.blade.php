@@ -23,6 +23,12 @@
             </div>
         @endif
 
+        <br>
+
+        @if ($budgets->isEmpty())
+        <h3 class="text-center">Por enquanto não há propostas, verifique em outro momento.</h3>
+    @endif
+
         @foreach($budgets as $budget)
             <div class="card mb-3">
                 <div class="card-body">
