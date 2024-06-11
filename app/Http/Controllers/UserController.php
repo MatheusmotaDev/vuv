@@ -45,8 +45,8 @@ class UserController extends Controller
         return redirect('/')->with('success', 'Conta excluída com sucesso.');
     }
 
-        //saudacao usuario
-    public function saudacaoUsuario() {
+    public function saudacaoUsuario()
+    {
         $horaAtualBrasil = Carbon::now('America/Sao_Paulo')->hour;
         $saudacao = "";
 
@@ -62,6 +62,4 @@ class UserController extends Controller
 
         return "$saudacao, $nomeUsuario";
     }
-
-
 }

@@ -42,7 +42,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/customer/quotations/{quotation}/budgets/{budget}/refuse', [BudgetController::class, 'refuseBudget'])->name('customer.budgets.refuse');
     Route::get('/customer/quotations/{quotation}/budgets/{budget}/accepted', [BudgetController::class, 'acceptedBudget'])->name('customer.budgets.accepted');
     Route::post('/customer/quotations/{quotation}/close', [QuotationController::class, 'closeQuotation'])->name('customer.quotation.close');
-   
+
     Route::middleware(['role:seller'])->group(function () {
         Route::prefix('vendedor')->group(function () {
             Route::get('/dashboard', function () {
@@ -71,14 +71,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/admin/dashboard', function () {
             return view('admin.dashboard');
         })->name('admin.dashboard');
-    
+
         Route::get('/admin/users', [AdminUserController::class, 'index'])->name('admin.users.index');
         Route::delete('/admin/users/{id}', [AdminUserController::class, 'destroy'])->name('admin.users.destroy');
-
 
         Route::get('/admin/quotations', [QuotationController::class, 'adminIndex'])->name('admin.quotations.index');
         Route::delete('/admin/quotations/{quotation}', [QuotationController::class, 'destroy'])->name('admin.quotations.destroy');
     });
+
     Route::get('/profile/edit', [UserController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [UserController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [UserController::class, 'destroy'])->name('profile.destroy');

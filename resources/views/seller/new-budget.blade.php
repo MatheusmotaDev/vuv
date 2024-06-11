@@ -12,13 +12,21 @@
     @include('seller.navbar')
 
     <div class="container mt-4">
-        <h2>Cotações Disponíveis</h2>
+        <h2 class="text-center">Cotações Disponíveis</h2>
         @foreach($quotations as $quotation)
             <div class="card mt-4">
                 <div class="card-body">
-                    <h5 class="card-title">{{ $quotation->name }}</h5>
-                    <p class="card-text">{{ $quotation->notes }}</p>
-                    <a href="{{ route('quotations.createBudget', $quotation->id) }}" class="btn btn-primary">Fazer Proposta de Orçamento</a>
+                    <h5 class="card-title">Nome do Cliente: {{ $quotation->costumer->name }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Itens da Cotação:</h6>
+                    <ul class="list-group list-group-flush">
+                        @foreach($quotation->items as $item)
+                            <li class="list-group-item">{{ $item->name }}</li>
+                        @endforeach
+                    </ul>
+                    <p class="card-text mt-3">{{ $quotation->notes }}</p>
+                    <div class="text-center">
+                        <a href="{{ route('quotations.createBudget', $quotation->id) }}" class="btn btn-primary">Fazer Proposta de Orçamento</a>
+                    </div>
                 </div>
             </div>
         @endforeach

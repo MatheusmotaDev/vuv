@@ -56,9 +56,30 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    Status: {{ $budget->status }}
+                    @if($budget->status === 'accepted')
+                        <div class="card text-white bg-success" style="width: 8rem;">
+                            <div class="card-body">
+                                Você aceitou o orçamento
+                            </div>
+                        </div>
+                    @elseif($budget->status === 'pending')
+                        <div class="card text-white bg-warning" style="width: 8rem;">
+                            <div class="card-body">
+                                Pendente
+                            </div>
+                        </div>
+                    @elseif($budget->status === 'refused')
+                        <div class="card text-white bg-danger" style="width: 8rem;">
+                            <div class="card-body">
+                                Recusado
+                            </div>
+                        </div>
+                    @else
+                        Status: {{ $budget->status }}
+                    @endif
                 </div>
-            </div>
+                
+                
         @endforeach
     </div>
 

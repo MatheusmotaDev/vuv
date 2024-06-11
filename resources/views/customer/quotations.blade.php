@@ -32,9 +32,28 @@
           @endif
         </div>
       </div>
-      <div class="card-footer status-{{ $quotation->status }}">
-        Status: {{ $quotation->status }}
-      </div>
+      <div class="card-footer">
+        @if($quotation->status === 'open')
+            <div class="card text-white bg-success" style="width: fit-content;">
+                <div class="card-body text-center">
+                    Cotação Aberta
+                </div>
+            </div>
+        @elseif($quotation->status === 'in_progress')
+            <div class="card text-white bg-primary" style="width: fit-content;">
+                <div class="card-body text-center">
+                    Em andamento
+                </div>
+            </div>
+        @else
+            <div class="card text-white bg-secondary" style="width: fit-content;">
+                <div class="card-body text-center">
+                    Cotação Encerrada
+                </div>
+            </div>
+        @endif
+    </div>
+    
     </div>
     @endforeach
   </div>
