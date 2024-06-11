@@ -38,7 +38,7 @@
                         @endif
                     @endforeach
                     <!-- Botão para limpar notificações -->
-                    <li>
+                    <li class="text-center"> <!-- Adiciona classe para centralizar -->
                         <form method="POST"  action="{{ route('seller.notifications.clear') }}">
                             @csrf
                             <button type="submit" class="btn btn-danger">Limpar Notificações</button>

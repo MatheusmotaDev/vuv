@@ -34,7 +34,7 @@
             @elseif (auth()->user()->isSeller())
                 <a href="{{ route('seller.dashboard') }}">Dashboard</a>
             @else
-                <a href="{{ route('customer.dashboard') }}">Dashboard</a>
+                <a href="{{ route('dashboard') }}">Dashboard</a>
             @endif
         @else
             <a href="{{ route('login') }}">Login</a>
