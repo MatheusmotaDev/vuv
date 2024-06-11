@@ -9,8 +9,6 @@ use App\Http\Controllers\BudgetController;
 use App\Models\Quotation;
 use Illuminate\Support\Facades\Route;
 
-
-
 Route::get('/', function () {
     return view('index');
 });
@@ -45,7 +43,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/customer/quotations/{quotation}/budgets/{budget}/accepted', [BudgetController::class, 'acceptedBudget'])->name('customer.budgets.accepted');
     Route::post('/customer/quotations/{quotation}/close', [QuotationController::class, 'closeQuotation'])->name('customer.quotation.close');
    
-
     Route::middleware(['role:seller'])->group(function () {
         Route::prefix('vendedor')->group(function () {
             Route::get('/dashboard', function () {
@@ -65,22 +62,23 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
             Route::get('/orcamentos', [BudgetController::class, 'index'])->name('seller.budgets');
             Route::get('/orcamentos/{budget}/acompanhar', [BudgetController::class, 'track'])->name('budgets.track');
+
+            Route::post('/notifications/clear', [QuotationController::class, 'clearNotifications'])->name('seller.notifications.clear');
         });
     });
 
-    Route::middleware(['role:admin'])->group(function () {
-        Route::prefix('admin')->group(function () {
-            Route::get('/dashboard', function () {
-                return view('admin.dashboard');
-            })->name('admin.dashboard');
+    Route::middleware(['auth', 'role:admin', 'verified'])->group(function () {
+        Route::get('/admin/dashboard', function () {
+            return view('admin.dashboard');
+        })->name('admin.dashboard');
+    
+        Route::get('/admin/users', [AdminUserController::class, 'index'])->name('admin.users.index');
+        Route::delete('/admin/users/{id}', [AdminUserController::class, 'destroy'])->name('admin.users.destroy');
 
-            Route::get('/users', [AdminUserController::class, 'index'])->name('admin.users.index');
-            Route::delete('/users/{user}', [AdminUserController::class, 'destroy'])->name('admin.users.destroy');
-            Route::get('/quotations', [QuotationController::class, 'adminIndex'])->name('admin.quotations.index');
-            Route::delete('/quotations/{quotation}', [QuotationController::class, 'destroy'])->name('admin.quotations.destroy');
-        });
+
+        Route::get('/admin/quotations', [QuotationController::class, 'adminIndex'])->name('admin.quotations.index');
+        Route::delete('/admin/quotations/{quotation}', [QuotationController::class, 'destroy'])->name('admin.quotations.destroy');
     });
-
     Route::get('/profile/edit', [UserController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [UserController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [UserController::class, 'destroy'])->name('profile.destroy');
