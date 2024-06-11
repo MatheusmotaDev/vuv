@@ -10,8 +10,7 @@
 </head>
 <body>
 
-
-    @include('admin.navbar')
+@include('admin.navbar')
 
 <div class="container mt-5">
     <h1>Listar Usuários</h1>
@@ -39,25 +38,7 @@
                         <form action="{{ route('admin.users.destroy', $user) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{ $user->id }}">Apagar</button>
-                            <!-- Modal de confirmação -->
-                            <div class="modal fade" id="confirmDeleteModal{{ $user->id }}" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Exclusão</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            Tem certeza de que deseja excluir este usuário?
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                            <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <button type="submit" class="btn btn-danger">Excluir</button>
                         </form>
                     </td>
                 </tr>

@@ -1,0 +1,29 @@
+.quotation-card {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .quotation-header {
+    background-color: #007bff; /* Cor de fundo do cabeçalho */
+    color: #fff; /* Cor do texto do cabeçalho */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  
+  .card-footer {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 10px;
+    font-weight: bold;
+  }
+  
+  .status-open {
+    background-color: #28a745; /* Cor de fundo para status "open" */
+    color: #fff; /* Cor do texto para status "open" */
+  }
+  
+  .status-closed {
+    background-color: #dc3545; /* Cor de fundo para status "closed" */
+    color: #fff; /* Cor do texto para status "closed" */
+  }
+  

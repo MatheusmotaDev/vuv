@@ -17,8 +17,6 @@
     <div class="container mt-5">
         <h1 class="text-center">Listar Cotações</h1>
 
-
-
         <!-- Tabela para listar as cotações -->
         <table class="table mt-4">
             <thead>
@@ -41,13 +39,35 @@
                     <td>{{ $quotation->status }}</td>
                     <td>
                         <!-- Botão para excluir a cotação -->
-                        <form action="{{ route('admin.quotations.destroy', $quotation->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Excluir</button>
-                        </form>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDelete{{ $quotation->id }}">
+                            Excluir
+                        </button>
                     </td>
                 </tr>
+
+                <!-- Modal de confirmação de exclusão -->
+                <div class="modal fade" id="confirmDelete{{ $quotation->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Confirmação de Exclusão</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Tem certeza que deseja excluir a cotação "{{ $quotation->name }}"?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <!-- Botão para confirmar a exclusão -->
+                                <form action="{{ route('admin.quotations.destroy', $quotation->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Confirmar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 @endforeach
             </tbody>
         </table>

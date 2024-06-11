@@ -43,10 +43,12 @@
                     ACOMPANHAR ORÇAMENTOS
                 </div>
                 <div class="card-body">
-                    <p class="card-text" style="text-align: center;">Clique abaixo para ver as propostas de orçamento feitas por você e os andamentos dela</p>
+                    <p class="card-text" style="text-align: center;">Clique abaixo para ver as propostas de orçamento feitas por você e os andamentos delas</p>
                     <div class="text-center">
-                        <a href="#" class="btn btn-primary">VER</a>
+                        <a href="{{ route('seller.budgets') }}" class="btn btn-primary">VER</a>
                     </div>
+                </div>
+                
                 </div>
             </div>
         </div>
@@ -54,11 +56,9 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-    integrity="sha384-gh7hCB2wY9h/LS1wa7Gb72A5iUEuNbU10a8MFu42O1oe9iEfeKXe7MW/axXJC7bX"
-    crossorigin="anonymous"></script>
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
-    integrity="sha384-Ys2SmgVBf8fW3fXK0z+WaCzynJ2rtrB+1sbY/ZvRUeR2zNQLeSpibibhav75vNgf"
-    crossorigin="anonymous"></script>
+    integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
 </body>
 
 </html>
