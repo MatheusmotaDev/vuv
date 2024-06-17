@@ -58,7 +58,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                <!-- Botão para confirmar a exclusão -->
+                                <!-- Formulário para confirmar a exclusão -->
                                 <form action="{{ route('admin.quotations.destroy', $quotation->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')

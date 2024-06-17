@@ -517,10 +517,6 @@ section {
 
 
 
-
-
-
-
 @media (max-width: 991px) {
   html {
     font-size: 55%;
@@ -535,45 +531,42 @@ section {
   }
 }
 
-
-
 @media (max-width: 768px) {
   .topo-site .icons #menu {
     display: inline-block;
   }
 
   .topo-site .menu-site {
+    display: flex;
+    flex-direction: column;
     position: absolute;
     top: 110%;
-    right: 110%;
-    width: 30rem;
+    right: -100%;
+    width: 100%;
     background-color: white;
     border-radius: 0.5rem;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    transition: right 0.4s linear;
   }
 
   .topo-site .menu-site.active {
-    right: 2rem;
-    transition: 0.4s linear;
+    right: 0;
   }
 
   .topo-site .menu-site a {
     font-size: 2rem;
-    margin: 1rem 2.5rem;
+    margin: 1rem 0;
+    padding: 1rem;
+    color: black;
+    border-bottom: 1px solid black;
+    border-bottom-style: dotted;
+    text-align: center;
   }
 
   .vuv-destaque .slide .content h3 {
     font-size: 3rem;
   }
-
-  .topo-site .menu-site a {
-    color: black;
-    border-bottom: 1px solid black;
-    border-bottom-style: dotted;
-  }
 }
-
-
 
 @media (max-width: 450px) {
   html {
@@ -582,11 +575,5 @@ section {
 
   .vuv-destaque .slide .content h3 {
     font-size: 3.5rem;
-  }
-
-  .topo-site .menu-site a {
-    color: black;
-    border-bottom: 1px solid black;
-    border-bottom-style: dotted;
   }
 }

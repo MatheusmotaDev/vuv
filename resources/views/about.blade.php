@@ -124,11 +124,11 @@ a:hover, a:active {
 <body>
 
 <header class="topo-site">
-                <img class="vuv" src="img/home/logo_vuv_azul.png" alt="">
-                <a class="logo" href="index.html"> VUV</a>
+<img class="vuv" src="img/home/logo_vuv_azul.png" alt="">
+                <a class="logo" href="/"> VUV</a>
 
-                <nav class="menu-site">
-                    <a href="index.html">Inicio</a>
+                 <nav class="menu-site">
+                    <a href="/">Inicio</a>
                     <a href="{{ route('services') }}">Serviços</a>
                     <a href="{{ route('about') }}">Sobre Nós</a>
                 </nav>

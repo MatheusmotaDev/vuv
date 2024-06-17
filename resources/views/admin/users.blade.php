@@ -35,11 +35,12 @@
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->getRole() }}</td>
                     <td>
-                        <form action="{{ route('admin.users.destroy', $user) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Excluir</button>
-                        </form>
+                        <!-- Desabilitar o botão de excluir -->
+                        <button class="btn btn-danger disabled" disabled>Excluir</button>
+                        <!-- Incluir um aviso -->
+                        <div class="mt-2">
+                            A função de deletar usuários estará disponível nas próximas versões do sistema.
+                        </div>
                     </td>
                 </tr>
             @endforeach

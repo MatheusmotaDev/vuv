@@ -13,13 +13,14 @@
 
 <header class="topo-site">
                 <img class="vuv" src="img/home/logo_vuv_azul.png" alt="">
-                <a class="logo" href="index.html"> VUV</a>
+                <a class="logo" href="/"> VUV</a>
 
-                <nav class="menu-site">
-                    <a href="#">Inicio</a>
+                 <nav class="menu-site">
+                    <a href="/">Inicio</a>
                     <a href="{{ route('services') }}">Serviços</a>
                     <a href="{{ route('about') }}">Sobre Nós</a>
                 </nav>
+
 
                 <div class="icons">
                     
@@ -30,11 +31,11 @@
     <nav class="menu-site">
         @auth
             @if (auth()->user()->isAdmin())
-                <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+                <a href="{{ route('admin.dashboard') }}">Área do admin</a>
             @elseif (auth()->user()->isSeller())
-                <a href="{{ route('seller.dashboard') }}">Dashboard</a>
+                <a href="{{ route('seller.dashboard') }}">Área do vendedor</a>
             @else
-                <a href="{{ route('dashboard') }}">Dashboard</a>
+                <a href="{{ route('dashboard') }}">Área do cliente</a>
             @endif
         @else
             <a href="{{ route('login') }}">Login</a>
@@ -62,31 +63,74 @@
             <div class="swiper-wrapper">
 
                 <div class="swiper-slide slide" style="background:url(img/home/banner1.png) no-repeat;">
-                    <div class="content">
-                     <h3>A <span>melhor</span> cotações de peças <br> da região</h3>
-                    <a href="{{ route('options') }}" class="btn">cadastre-se</a>
-                    </div>
-                    </div>
-              
+        <div class="content">
+            <h3>A <span>melhor</span> cotações de peças <br> da região</h3>
+            @if (Route::has('login'))
+                @auth
+                    @if (auth()->user()->isAdmin())
+                        <a href="{{ route('admin.dashboard') }}" class="btn">Painel</a>
+                    @elseif (auth()->user()->isSeller())
+                        <a href="{{ route('seller.dashboard') }}" class="btn">Painel</a>
+                    @else
+                        <a href="{{ route('dashboard') }}" class="btn">Painel</a>
+                    @endif
+                @else
+                    @if (Route::has('register'))
+                        <a href="{{ route('options') }}" class="btn">Cadastre-se</a>
+                    @endif
+                @endauth
+            @endif
+        </div>
+    </div>
+
               
 
                 
-                <div class="swiper-slide slide" style="background:url(img/home/banner2.png) no-repeat;">
-                    <div class="content">
-                    <h3>A <span>melhor</span> cotações de peças <br> da região</h3>
-                    <a href="{{ route('options') }}" class="btn">cadastre-se</a>
-                    </div>
-                    </div>
+    <div class="swiper-slide slide" style="background:url(img/home/banner2.png) no-repeat;">
+    <div class="content">
+        <h3>A <span>melhor</span> cotações de peças <br> da região</h3>
+        @if (Route::has('login'))
+            @auth
+                @if (auth()->user()->isAdmin())
+                    <a href="{{ route('admin.dashboard') }}" class="btn">Painel</a>
+                @elseif (auth()->user()->isSeller())
+                    <a href="{{ route('seller.dashboard') }}" class="btn">Painel</a>
+                @else
+                    <a href="{{ route('dashboard') }}" class="btn">Painel</a>
+                @endif
+            @else
+                @if (Route::has('register'))
+                    <a href="{{ route('options') }}" class="btn">Cadastre-se</a>
+                @endif
+            @endauth
+        @endif
+    </div>
+</div>
+
               
                     
                     
-                    <div class="swiper-slide slide" style="background:url(img/home/banner3.png) no-repeat;">
-                        <div class="content">
-                        <h3>A <span>melhor</span> cotações de peças <br> da região</h3>
-                        <a href="{{ route('options') }}" class="btn">cadastre-se</a>
-                        </div>
-                        </div>
-                  
+            <div class="swiper-slide slide" style="background:url(img/home/banner3.png) no-repeat;">
+                <div class="content">
+                    <h3>A <span>melhor</span> cotações de peças <br> da região</h3>
+                    @if (Route::has('login'))
+                        @auth
+                            @if (auth()->user()->isAdmin())
+                                <a href="{{ route('admin.dashboard') }}" class="btn">Painel</a>
+                            @elseif (auth()->user()->isSeller())
+                                <a href="{{ route('seller.dashboard') }}" class="btn">Painel</a>
+                            @else
+                                <a href="{{ route('dashboard') }}" class="btn">Painel</a>
+                            @endif
+                        @else
+                            @if (Route::has('register'))
+                                <a href="{{ route('options') }}" class="btn">Cadastre-se</a>
+                            @endif
+                        @endauth
+                    @endif
+                </div>
+            </div>
+
                 
             </div>
 
@@ -169,6 +213,9 @@
                 </div>
                 <h3> Por que a VUV?</h3>
                 <p>Descubra uma nova maneira de encontrar peças automotivas. Simplifique sua busca e conecte-se a uma ampla rede de vendedores confiáveis. Experimente a conveniência da VUV hoje mesmo.</p>
+                <br>
+                <br>
+                <br>
                 <a href="{{ route('services') }}" class="btn">Saiba mais</a>
             </div>
 
