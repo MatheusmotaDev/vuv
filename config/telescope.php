@@ -202,4 +202,22 @@ return [
         Watchers\ScheduleWatcher::class => env('TELESCOPE_SCHEDULE_WATCHER', true),
         Watchers\ViewWatcher::class => env('TELESCOPE_VIEW_WATCHER', true),
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Telescope Gate
+    |--------------------------------------------------------------------------
+    |
+    | This gate controls access to Telescope in non-local environments.
+    | By default, you can access Telescope in non-local environments
+    | only if the user is an administrator. You are free to modify
+    | this gate as needed to restrict access to your Telescope.
+    |
+    */
+
+    'gate' => function ($user) {
+        return in_array($user->role, [
+            'admin',
+        ]);
+    },
 ];
