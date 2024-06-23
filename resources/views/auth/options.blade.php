@@ -8,19 +8,32 @@
   <link rel="stylesheet" href="css/options.css">
 </head>
 <body>
-  <div class="container center">
+  <div class="container text-center mt-5">
     <img src="/img/options/vuv.png" alt="Logo" class="img-fluid mb-4" style="max-width: 200px;">
     <h2 class="mb-4">SEJA BEM VINDO!</h2>
     <h4 class="mb-4">SELECIONE SUA OPÇÃO DE CADASTRO:</h4>
-    <div class="row">
-      <div class="col">
-      <a href="{{ route('register') }}" class="btn btn-custom btn-lg btn-block">Cliente</a>
-
-
+    <div class="row mb-3 justify-content-center">
+      <div class="col-md-4 mb-2">
+        <a href="{{ route('register') }}" class="btn btn-custom btn-lg w-100">Cliente</a>
       </div>
-      <div class="col">
-        <a href="{{ route('seller.register') }}" class="btn btn-custom btn-lg btn-block">Vendedor</a>
+      <div class="col-md-4 mb-2">
+        <a href="{{ route('seller.register') }}" class="btn btn-custom btn-lg w-100">Vendedor</a>
       </div>
+    </div>
+
+    <!-- Separador -->
+    <div class="d-flex align-items-center my-4 justify-content-center">
+      <div class="border-bottom w-25"></div>
+      <span class="mx-2">ou</span>
+      <div class="border-bottom w-25"></div>
+    </div>
+
+    <!-- Botão de login -->
+    <div class="row mt-3 justify-content-center">
+      <div class="col-md-4">
+        <a href="{{ route('login') }}" class="btn btn-primary btn-lg w-100">Fazer Login</a>
+      </div>
+    </div>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
