@@ -1,63 +1,58 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Acompanhar Cotações</title>
-  <link href="/css/quotation.css" rel="stylesheet">
-  <link rel="stylesheet" href="/css/status.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acompanhar Cotações - VUV</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/vuv-modern.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/img/home/logo_vuv_azul.png" type="image/x-icon">
 </head>
-<body>
- 
-  @include('customer.navbar')
+<body class="vuv-page vuv-page-light">
+    @include('customer.navbar')
 
-  <div class="container">
-    <h1 class="form-title text-center">Acompanhar Cotações</h1>
-    
-    @foreach($quotations as $quotation)
-    <div class="card mt-4 quotation-card">
-      <div class="card-header quotation-header">
-        Cotação #{{ $quotation->id }} - {{ $quotation->name }} <!-- Adicionando o título da cotação -->
-      </div>
-      <div class="card-body">
-        <h5 class="card-title">Detalhes da Cotação</h5>
-        <p class="card-text">Observações Gerais: <br> {{ $quotation->notes }}</p> <!-- Observações Gerais da Cotação -->
-        <div class="text-end mt-3">
-          @if($quotation->status === 'closed')
-            <a href="{{ route('customer.quotations.items', $quotation->id) }}" class="btn btn-primary">Ver Itens</a> <!-- Botão para ver os itens -->
-          @else
-            <a href="{{ route('customer.quotations.budgets', $quotation->id) }}" class="btn btn-primary">Ver Propostas</a> <!-- Botão para ver propostas -->
-          @endif
+    <div class="container" style="max-width: 900px; padding-top: 1rem;">
+        <div class="vuv-page-header vuv-animate-fadeInUp">
+            <h1>Acompanhar Cotações</h1>
+            <p>Veja o status e as propostas de cada cotação</p>
         </div>
-      </div>
-      <div class="card-footer">
-        @if($quotation->status === 'open')
-            <div class="card text-white bg-success" style="width: fit-content;">
-                <div class="card-body text-center">
-                    Cotação Aberta
-                </div>
-            </div>
-        @elseif($quotation->status === 'in_progress')
-            <div class="card text-white bg-primary" style="width: fit-content;">
-                <div class="card-body text-center">
-                    Em andamento
-                </div>
-            </div>
-        @else
-            <div class="card text-white bg-secondary" style="width: fit-content;">
-                <div class="card-body text-center">
-                    Cotação Encerrada
-                </div>
-            </div>
-        @endif
-    </div>
-    
-    </div>
-    @endforeach
-  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        @foreach($quotations as $quotation)
+        <div class="vuv-quotation-card vuv-animate-fadeInUp vuv-delay-{{ min($loop->iteration, 3) }}">
+            <div class="vuv-quotation-header">
+                <i class="fas fa-file-alt" style="margin-right: 0.5rem;"></i>
+                Cotação #{{ $quotation->id }} — {{ $quotation->name }}
+            </div>
+            <div class="vuv-quotation-body">
+                <h6 style="font-weight: 700; color: var(--vuv-text-dark); margin-bottom: 0.5rem;">Detalhes da Cotação</h6>
+                <p style="color: var(--vuv-text-dark-secondary); font-size: 0.9rem; line-height: 1.7;">
+                    <strong>Observações:</strong><br>{{ $quotation->notes }}
+                </p>
+            </div>
+            <div class="vuv-quotation-footer">
+                @if($quotation->status === 'open')
+                    <span class="vuv-badge vuv-badge-success vuv-badge-dot">Cotação Aberta</span>
+                @elseif($quotation->status === 'in_progress')
+                    <span class="vuv-badge vuv-badge-info vuv-badge-dot">Em Andamento</span>
+                @else
+                    <span class="vuv-badge vuv-badge-secondary vuv-badge-dot">Cotação Encerrada</span>
+                @endif
+
+                @if($quotation->status === 'closed')
+                    <a href="{{ route('customer.quotations.items', $quotation->id) }}" class="vuv-btn vuv-btn-primary vuv-btn-sm">
+                        <i class="fas fa-list"></i> Ver Itens
+                    </a>
+                @else
+                    <a href="{{ route('customer.quotations.budgets', $quotation->id) }}" class="vuv-btn vuv-btn-primary vuv-btn-sm">
+                        <i class="fas fa-file-invoice-dollar"></i> Ver Propostas
+                    </a>
+                @endif
+            </div>
+        </div>
+        @endforeach
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

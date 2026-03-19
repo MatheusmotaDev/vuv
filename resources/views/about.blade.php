@@ -3,269 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<style>
-    body {
-    font-family: 'Roboto';font-size: 16px;
-}
-
-.aboutus-section {
-    padding: 90px 0;
-}
-.aboutus-title {
-    font-size: 30px;
-    letter-spacing: 0;
-    line-height: 32px;
-    margin: 0 0 39px;
-    padding: 0 0 11px;
-    position: relative;
-    text-transform: uppercase;
-    color: #000;
-}
-.aboutus-title::after {
-    background: #fdb801 none repeat scroll 0 0;
-    bottom: 0;
-    content: "";
-    height: 2px;
-    left: 0;
-    position: absolute;
-    width: 54px;
-}
-.aboutus-text {
-    color: #606060;
-    font-size: 13px;
-    line-height: 22px;
-    margin: 0 0 35px;
-}
-
-a:hover, a:active {
-    color: #ffb901;
-    text-decoration: none;
-    outline: 0;
-}
-.aboutus-more {
-    border: 1px solid #fdb801;
-    border-radius: 25px;
-    color: #fdb801;
-    display: inline-block;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0;
-    padding: 7px 20px;
-    text-transform: uppercase;
-}
-.feature .feature-box .iconset {
-    background: #fff none repeat scroll 0 0;
-    float: left;
-    position: relative;
-    width: 18%;
-}
-.feature .feature-box .iconset::after {
-    background: #fdb801 none repeat scroll 0 0;
-    content: "";
-    height: 150%;
-    left: 43%;
-    position: absolute;
-    top: 100%;
-    width: 1px;
-}
-
-.feature .feature-box .feature-content h4 {
-    color: #0f0f0f;
-    font-size: 18px;
-    letter-spacing: 0;
-    line-height: 22px;
-    margin: 0 0 5px;
-}
-
-
-.feature .feature-box .feature-content {
-    float: left;
-    padding-left: 28px;
-    width: 78%;
-}
-.feature .feature-box .feature-content h4 {
-    color: #0f0f0f;
-    font-size: 18px;
-    letter-spacing: 0;
-    line-height: 22px;
-    margin: 0 0 5px;
-}
-.feature .feature-box .feature-content p {
-    color: #606060;
-    font-size: 13px;
-    line-height: 22px;
-}
-.icon {
-    color : #f4b841;
-    padding:0px;
-    font-size:40px;
-    border: 1px solid #fdb801;
-    border-radius: 100px;
-    color: #fdb801;
-    font-size: 28px;
-    height: 70px;
-    line-height: 70px;
-    text-align: center;
-    width: 70px;
-}
-
-</style>
-
-   
-    <link rel="stylesheet" href="css/home.css">
-    <title>VUV- Vida útil Do Veículo</title>
+    <title>Sobre Nós - VUV</title>
+    <meta name="description" content="Conheça a VUV - Vida Útil do Veículo. Plataforma de cotação de peças automotivas.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/vuv-modern.css">
     <link rel="shortcut icon" href="img/home/logo_vuv_azul.png" type="image/x-icon">
 </head>
-<body>
+<body class="vuv-page">
 
-<header class="topo-site">
-<img class="vuv" src="img/home/logo_vuv_azul.png" alt="">
-                <a class="logo" href="/"> VUV</a>
+{{-- =================== NAVBAR =================== --}}
+<nav class="navbar navbar-expand-lg vuv-navbar" style="position: fixed; top: 0; left: 0; right: 0; z-index: 1050;">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url('/') }}">
+            <img src="img/home/logo_vuv_azul.png" alt="VUV">
+            <span>VUV</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#aboutNav" style="border-color: rgba(255,255,255,0.2);">
+            <i class="fas fa-bars" style="color: white;"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="aboutNav">
+            <ul class="navbar-nav ms-auto align-items-center gap-1">
+                <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Início</a></li>
+                <li class="nav-item"><a class="nav-link active" href="#">Sobre</a></li>
+                <li class="nav-item" style="margin-left: 0.5rem;">
+                    <a href="{{ route('login') }}" class="vuv-btn vuv-btn-primary vuv-btn-sm">
+                        <i class="fas fa-sign-in-alt"></i> Entrar
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-                 <nav class="menu-site">
-                    <a href="/">Inicio</a>
-                    <a href="{{ route('services') }}">Serviços</a>
-                    <a href="{{ route('about') }}">Sobre Nós</a>
-                </nav>
+{{-- =================== HERO =================== --}}
+<section class="vuv-hero" style="min-height: 50vh; padding-top: 8rem;">
+    <div class="vuv-hero-content">
+        <h1>Sobre a <span>VUV</span></h1>
+        <p>Conheça a plataforma que está transformando o mercado de peças automotivas</p>
+    </div>
+</section>
 
-                <div class="icons">
-                    
-                    <div id="menu"  class="fas fa-bars"></div>
+{{-- =================== MISSÃO / VISÃO / VALORES =================== --}}
+<section class="vuv-home-section" style="background: var(--vuv-gradient-bg);">
+    <div class="container">
+        <div class="vuv-steps-grid" style="max-width: 1100px;">
+            <div class="vuv-step-card vuv-animate-fadeInUp vuv-delay-1">
+                <div class="vuv-card-icon" style="margin: 0 auto 1rem;">
+                    <i class="fas fa-bullseye"></i>
                 </div>
-
-                @if (Route::has('login'))
-                <nav class="menu-site">
-                    @auth
-                    <a href="{{ url('/dashboard') }}">Dashboard</a>
-                    @else
-                    <a href="{{ route('login') }}">Login</a>
-
-                    @if (Route::has('register'))
-                    <a href="{{ route('options') }}">Cadastro</a>
-                    @endif
-                    @endauth
-                </nav>
-                @endif
-
-             
-                </header>
-
-
-    <br>
-    <br>
-    <br>
-    <br>
-
-    <div class="aboutus-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="aboutus">
-                        <h2 class="aboutus-title">Sobre Nós</h2>
-                        <p class="aboutus-text">Na VUV, estamos comprometidos em revolucionar a maneira como as pessoas lidam com suas necessidades automotivas. Nossa plataforma oferece uma abordagem inovadora para facilitar a compra e venda de peças de automóveis, proporcionando uma experiência eficiente e confiável para nossos usuários.</p>
-                        <p class="aboutus-text">Aqui na VUV, trabalhamos com paixão para oferecer soluções que atendam às necessidades de nossos clientes e parceiros. Nossa equipe está empenhada em fornecer serviços confiáveis e um suporte excepcional para garantir a satisfação de todos os envolvidos.</p>
-                        <a class="aboutus-more" href="#">Se interessou?</a>
-                    </div>
+                <h3>Nossa Missão</h3>
+                <p style="color: var(--vuv-text-dark-secondary); font-size: 0.875rem; margin-top: 0.5rem;">
+                    Facilitar e modernizar o processo de cotação de peças automotivas, conectando clientes e vendedores de forma eficiente.
+                </p>
+            </div>
+            <div class="vuv-step-card vuv-animate-fadeInUp vuv-delay-2">
+                <div class="vuv-card-icon amber" style="margin: 0 auto 1rem;">
+                    <i class="fas fa-eye"></i>
                 </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="aboutus-banner">
-                        <img src="http://themeinnovation.com/demo2/html/build-up/img/home1/about1.jpg" alt="">
-                    </div>
+                <h3>Nossa Visão</h3>
+                <p style="color: var(--vuv-text-dark-secondary); font-size: 0.875rem; margin-top: 0.5rem;">
+                    Ser a principal plataforma de referência em cotação de peças automotivas do Brasil.
+                </p>
+            </div>
+            <div class="vuv-step-card vuv-animate-fadeInUp vuv-delay-3">
+                <div class="vuv-card-icon emerald" style="margin: 0 auto 1rem;">
+                    <i class="fas fa-heart"></i>
                 </div>
-                <div class="col-md-5 col-sm-6 col-xs-12">
-                    <div class="feature">
-                        <div class="feature-box">
-                            <div class="clearfix">
-                                <div class="iconset">
-                                    <span class="glyphicon glyphicon-cog icon"></span>
-                                </div>
-                                <div class="feature-content">
-                                    <h4>Trabalhe com Paixão</h4>
-                                    <p>Na VUV, acreditamos em fazer nosso trabalho com paixão. Estamos dedicados a oferecer o melhor serviço possível aos nossos clientes, garantindo que cada interação seja excepcional.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="feature-box">
-                            <div class="clearfix">
-                                <div class="iconset">
-                                    <span class="glyphicon glyphicon-cog icon"></span>
-                                </div>
-                                <div class="feature-content">
-                                    <h4>Serviços Confiáveis</h4>
-                                    <p>Nossos serviços são projetados com confiabilidade em mente. Trabalhamos arduamente para garantir que cada transação seja suave e segura, proporcionando tranquilidade aos nossos usuários.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="feature-box">
-                            <div class="clearfix">
-                                <div class="iconset">
-                                    <span class="glyphicon glyphicon-cog icon"></span>
-                                </div>
-                                <div class="feature-content">
-                                    <h4>Suporte de Qualidade</h4>
-                                    <p>Na VUV, valorizamos o suporte de qualidade. Nossa equipe está sempre disponível para ajudar e resolver quaisquer dúvidas ou preocupações que nossos usuários possam ter.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <h3>Nossos Valores</h3>
+                <p style="color: var(--vuv-text-dark-secondary); font-size: 0.875rem; margin-top: 0.5rem;">
+                    Transparência, inovação, sustentabilidade e compromisso com a qualidade do serviço.
+                </p>
             </div>
         </div>
     </div>
+</section>
 
+{{-- =================== SOBRE A EMPRESA =================== --}}
+<section class="vuv-home-section vuv-home-section-dark">
+    <div class="container">
+        <div class="vuv-about-row">
+            <img src="img/home/carro_1.jpeg" alt="VUV">
+            <div class="vuv-about-content">
+                <h3>Quem somos <span>nós</span></h3>
+                <p>A VUV – Vida Útil do Veículo nasceu da necessidade de simplificar o processo de busca e cotação de peças automotivas. Somos uma plataforma digital que conecta clientes que precisam de peças a vendedores especializados, criando um ecossistema eficiente e transparente.</p>
+                <p>Nossa equipe é formada por profissionais apaixonados por tecnologia e pelo setor automotivo, sempre buscando formas inovadoras de resolver os desafios do mercado.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
-
-    
-
-
-    <section class="footer">
-        <div class="box-container">
-
-            <div class="box">
-                <h3>VUV - Vida útil do Veículo</h3>
-                <p>Siga nossas redes sociais</p>
-                <div class="rede-sociais">
-                    <a href="" class="fab fa-instagram"></a>
-                    <a href="" class="fab fa-twitter"></a>
+{{-- =================== FUNCIONALIDADES =================== --}}
+<section class="vuv-home-section" style="background: var(--vuv-gradient-bg);">
+    <div class="container">
+        <h2 class="vuv-section-title" style="color: var(--vuv-text-dark);">O que <span>oferecemos</span></h2>
+        <div class="vuv-info-grid">
+            <div class="vuv-card vuv-animate-fadeInUp vuv-delay-1" style="text-align: center; padding: 2rem;">
+                <div class="vuv-card-icon" style="margin: 0 auto 1rem;">
+                    <i class="fas fa-search-dollar"></i>
                 </div>
+                <h3 class="vuv-card-title">Cotações Inteligentes</h3>
+                <p class="vuv-card-text">Sistema de cotação rápido e intuitivo que conecta sua demanda aos melhores vendedores</p>
             </div>
-
-            <div class="box">
-                <h3>Contatos:</h3>
-                <p>(81) 9.4002-8922</p>
-                <p>vuv.eteginasio.pe@gmail.com</p>
-                
+            <div class="vuv-card vuv-animate-fadeInUp vuv-delay-2" style="text-align: center; padding: 2rem;">
+                <div class="vuv-card-icon amber" style="margin: 0 auto 1rem;">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="vuv-card-title">Segurança</h3>
+                <p class="vuv-card-text">Plataforma segura com dados protegidos e transações transparentes</p>
             </div>
-
-
-            <div class="box">
-                <h3>Sede física</h3>
-                <p>Cruz cabugá, Ginasio Pernambucano</p>
-                <p>Recife, PE</p>
-                
+            <div class="vuv-card vuv-animate-fadeInUp vuv-delay-3" style="text-align: center; padding: 2rem;">
+                <div class="vuv-card-icon emerald" style="margin: 0 auto 1rem;">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <h3 class="vuv-card-title">Contato Direto</h3>
+                <p class="vuv-card-text">Comunique-se diretamente com vendedores via WhatsApp após aceitar uma proposta</p>
             </div>
-
-
-
         </div>
+    </div>
+</section>
 
-        <div class="direitos">
-              Todos os direitos Reservados
+{{-- =================== CTA =================== --}}
+<section class="vuv-hero" style="min-height: 40vh;">
+    <div class="vuv-hero-content">
+        <h1 style="font-size: 2.5rem;">Pronto para <span>começar</span>?</h1>
+        <p>Cadastre-se gratuitamente e comece a utilizar a plataforma agora mesmo</p>
+        <a href="{{ route('options') }}" class="vuv-btn vuv-btn-primary vuv-btn-lg">
+            <i class="fas fa-rocket"></i> Cadastre-se Gratuitamente
+        </a>
+    </div>
+</section>
+
+{{-- =================== FOOTER =================== --}}
+<footer class="vuv-footer">
+    <div class="vuv-footer-grid">
+        <div>
+            <h3>
+                <img src="img/home/logo_vuv_azul.png" alt="VUV" style="width: 28px; height: 28px; margin-right: 0.5rem; border-radius: 6px;">
+                VUV
+            </h3>
+            <p>Plataforma de cotação de peças automotivas.</p>
+            <div class="vuv-footer-social">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+            </div>
         </div>
+        <div>
+            <h3>Links</h3>
+            <p><a href="{{ url('/') }}" style="color: var(--vuv-text-secondary);">Início</a></p>
+            <p><a href="#" style="color: var(--vuv-text-secondary);">Sobre</a></p>
+            <p><a href="{{ route('login') }}" style="color: var(--vuv-text-secondary);">Entrar</a></p>
+        </div>
+        <div>
+            <h3>Contato</h3>
+            <p><i class="fas fa-envelope" style="margin-right: 0.35rem;"></i> contato@vuv.com.br</p>
+            <p><i class="fas fa-phone" style="margin-right: 0.35rem;"></i> (11) 99999-9999</p>
+        </div>
+    </div>
+    <div class="vuv-footer-bottom">
+        <p>&copy; {{ date('Y') }} VUV - Vida Útil do Veículo. Todos os direitos reservados.</p>
+    </div>
+</footer>
 
-
-
-    </section>
-   
-   
-    
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-    <script src="scripts/home.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

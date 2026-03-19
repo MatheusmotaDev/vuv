@@ -1,66 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forgot Password</title>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <style>
-        body {
-            background-color: #3498db;
-        }
-    </style>
+    <title>Esqueceu a Senha - VUV</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/vuv-modern.css">
+    <link rel="shortcut icon" href="img/home/logo_vuv_azul.png" type="image/x-icon">
 </head>
-<body>
-    <div class="form-gap"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <br>
-                        <div class="text-center">
-                            <br>
-                            <br>
-                            <h3><i class="fa fa-lock fa-4x"></i></h3>
-                            <h2 class="text-center">Esqueceu sua senha?</h2>
-                            <p>Você pode resetar sua senha aqui!</p>
-                            <div class="panel-body">
-                                <form method="POST" action="{{ route('password.email') }}">
-                                    @csrf
-                                    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-                                    Esqueceu sua senha? Sem problemas. Basta nos informar o seu endereço de e-mail e enviaremos um link de redefinição de senha por e-mail, que permitirá que você escolha uma nova senha
-                                    </div>
-                                    <!-- Session Status -->
-                                    <div class="mb-4">
-                                        @if (session('status'))
-                                            <div class="alert alert-success" role="alert">
-                                                {{ session('status') }}
-                                            </div>
-                                        @endif
-                                    </div>
-                                    <!-- Email Address -->
-                                    <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input id="email" class="form-control" type="email" name="email" value="{{ old('email') }}" required autofocus>
-                                        @error('email')
-                                            <div class="alert alert-danger mt-2">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-lg btn-primary btn-block">Enviar solicitação</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<body class="vuv-page vuv-page-dark">
+
+<div class="vuv-auth-wrapper">
+    <div class="vuv-auth-card">
+        <div class="vuv-auth-logo">
+            <img src="img/login/vuv.png" alt="VUV">
+            <span>VUV</span>
         </div>
+
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+            <div style="width: 64px; height: 64px; border-radius: 16px; background: var(--vuv-gradient-accent); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                <i class="fas fa-lock" style="font-size: 1.5rem; color: var(--vuv-navy);"></i>
+            </div>
+            <h2 class="vuv-auth-title">Esqueceu sua senha?</h2>
+            <p class="vuv-auth-subtitle" style="margin-bottom: 0;">Informe seu e-mail e enviaremos um link para redefinir sua senha</p>
+        </div>
+
+        <form method="POST" action="{{ route('password.email') }}">
+            @csrf
+
+            @if (session('status'))
+                <div class="vuv-alert vuv-alert-success">
+                    <i class="fas fa-check-circle"></i>
+                    {{ session('status') }}
+                </div>
+            @endif
+
+            <div class="vuv-form-group">
+                <label for="email" class="vuv-form-label">{{ __('Email') }}</label>
+                <input id="email" class="vuv-form-control" type="email" name="email" value="{{ old('email') }}" required autofocus placeholder="seu@email.com" />
+                @error('email')
+                    <div class="vuv-form-error">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <button type="submit" class="vuv-btn vuv-btn-primary vuv-btn-lg" style="width: 100%;">
+                <i class="fas fa-paper-plane"></i>
+                Enviar Solicitação
+            </button>
+
+            <div style="text-align: center; margin-top: 1.25rem;">
+                <a href="{{ route('login') }}" style="color: var(--vuv-text-secondary); font-size: 0.875rem;">
+                    <i class="fas fa-arrow-left" style="margin-right: 0.35rem;"></i>
+                    Voltar para o login
+                </a>
+            </div>
+        </form>
     </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

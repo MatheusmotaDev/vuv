@@ -3,36 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cotações Disponíveis</title>
-    <link href="/css/dashboard.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Cotações Disponíveis - VUV</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/vuv-modern.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/img/home/logo_vuv_azul.png" type="image/x-icon">
 </head>
-<body>
+<body class="vuv-page vuv-page-light">
     @include('seller.navbar')
 
-    <div class="container mt-4">
-        <h2 class="text-center">Cotações Disponíveis</h2>
+    <div class="container" style="max-width: 900px; padding-top: 1rem;">
+        <div class="vuv-page-header vuv-animate-fadeInUp">
+            <h1>Cotações Disponíveis</h1>
+            <p>Selecione uma cotação para enviar sua proposta de orçamento</p>
+        </div>
+
         @foreach($quotations as $quotation)
-            <div class="card mt-4">
-                <div class="card-body">
-                    <h5 class="card-title">Nome do Cliente: {{ $quotation->costumer->name }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Itens da Cotação:</h6>
-                    <ul class="list-group list-group-flush">
-                        @foreach($quotation->items as $item)
-                            <li class="list-group-item">{{ $item->name }}</li>
-                        @endforeach
-                    </ul>
-                    <p class="card-text mt-3">{{ $quotation->notes }}</p>
-                    <div class="text-center">
-                        <a href="{{ route('quotations.createBudget', $quotation->id) }}" class="btn btn-primary">Fazer Proposta de Orçamento</a>
-                    </div>
-                </div>
+        <div class="vuv-card vuv-animate-fadeInUp vuv-delay-{{ min($loop->iteration, 3) }}" style="margin-bottom: 1.25rem;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+                <h5 style="font-weight: 700; color: var(--vuv-text-dark); margin: 0;">
+                    <i class="fas fa-user" style="color: var(--vuv-blue-light); margin-right: 0.35rem;"></i>
+                    {{ $quotation->costumer->name }}
+                </h5>
+                <span class="vuv-badge vuv-badge-success vuv-badge-dot">Aberta</span>
             </div>
+
+            <div style="margin-bottom: 1rem;">
+                <h6 style="font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--vuv-text-muted); margin-bottom: 0.5rem;">Itens Solicitados:</h6>
+                <ul style="list-style: none; padding: 0; margin: 0;">
+                    @foreach($quotation->items as $item)
+                        <li style="padding: 0.35rem 0; color: var(--vuv-text-dark-secondary); font-size: 0.9rem; border-bottom: 1px solid rgba(0,0,0,0.04);">
+                            <i class="fas fa-cog" style="color: var(--vuv-blue-light); margin-right: 0.35rem; font-size: 0.8rem;"></i>
+                            {{ $item->name }}
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+
+            @if($quotation->notes)
+            <p style="color: var(--vuv-text-dark-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
+                <strong>Observações:</strong> {{ $quotation->notes }}
+            </p>
+            @endif
+
+            <div style="text-align: center;">
+                <a href="{{ route('quotations.createBudget', $quotation->id) }}" class="vuv-btn vuv-btn-primary">
+                    <i class="fas fa-file-invoice-dollar"></i> Fazer Proposta de Orçamento
+                </a>
+            </div>
+        </div>
         @endforeach
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-gh7hCB2wY9h/LS1wa7Gb72A5iUEuNbU10a8MFu42O1oe9iEfeKXe7MW/axXJC7bX" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-Ys2SmgVBf8fW3fXK0z+WaCzynJ2rtrB+1sbY/ZvRUeR2zNQLeSpibibhav75vNgf" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
